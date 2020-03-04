@@ -1,20 +1,36 @@
 <xml xmlns="https://developers.google.com/blockly/xml"><variables><variable type="KIND_SpriteKind" id="r?jpF^(P^|$?7;2+Lb@]">Player</variable><variable type="KIND_SpriteKind" id="DG/uH8Yw)amD_DQLb-yV">Projectile</variable><variable type="KIND_SpriteKind" id="!%I84/])a2S@x[S%/1)?">Food</variable><variable type="KIND_SpriteKind" id="aV$Er(zb*j41VOkGw[n:">Enemy</variable><variable id="*.2N?)kq||M7W6ft*lEF">list</variable><variable id="-/GWHsF6V#!T0#N[K`7X">mySprite</variable><variable id="M.58./kss5`d=pVK0M8v">Knight</variable><variable id="fikA@7zzh5g=g?mWRW4{">Kumba</variable><variable id="3D?%k!^5@[o]V2xDDV4+">count</variable></variables><block type="function_definition" id="[Asumac9MKjawzdL4jZ|" x="0" y="16"><mutation name="character" functionid="C}^dgGjT{CC{R`W-6OA1"/><field name="function_name">character</field><statement name="STACK"><block type="variables_set" id="#ke|.o4oYN(1+3br)tGq"><field name="VAR" id="fikA@7zzh5g=g?mWRW4{">Kumba</field><value name="VALUE"><shadow type="math_number" id="Ii6ooyTvQ5|IH=MsP8HH"><field name="NUM">0</field></shadow><block type="spritescreate" id="c#%#u/,5`V:x:/2:buMJ"><value name="img"><shadow type="screen_image_picker" id="YaiK][Jk,i-:XbEk/-z0"><field name="img">img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . 5 5 5 5 b . . . . . . . . . . . . . . . . . . . . . . . . 
+. . b 5 b b 5 b b . . . . . . . . . . . . . . . . . . . . . . . 
+. b b 5 b b 5 b b . . . . . . . . . . . . . . . . . . . . . . . 
+. b b 5 b b 5 b b . . . . . . . . . . . . . . . . . . . . . . . 
+. b b 5 b b 5 b b . . . . . . . . . . . . . . . . . . . . . . . 
+. b b 5 5 5 5 b b . . . . . . . . . . . . . . . . . . . . . . . 
+. b b b c c b b b . . . . . . . . . . . . . . . . . . . . . . . 
+. b b b c c b b b . . . . . . . . . . . . . . . . . . . . . . . 
+. b b b c c b b . . . . . . . . . . . . . . . . . . . . . . . . 
+. . b c c c c . 5 . . . . . . . . . . . . . . . . . . . . . . . 
+. . f c c c c f 5 d d d d d d d d d . . . . . . . . . . . . . . 
+. . . b c c b . 5 . . . . . . . . . . . . . . . . . . . . . . . 
+. . . b b b b . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . b b b b . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . b b b b . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . b b b 5 5 5 . . . . . . . . . . . . . . . . . . . . . . . 
+. . . b b 5 5 5 5 5 . . . . . . . . . . . . . . . . . . . . . . 
 `</field></shadow></value><value name="kind"><shadow type="spritekind" id="1_Y?bml,KpIcV[qQ?@y1"><field name="MEMBER">Player</field></shadow></value></block></value></block></statement></block><block type="keyonevent" id="EG=k:p9t7M4A9}xOp[-$" x="730" y="170"><field name="button">controller.right</field><field name="event">ControllerButtonEvent.Pressed</field><statement name="HANDLER"><block type="run_image_animation" id="+%[-Zd$]#8Bf{,$w(Y,b"><value name="sprite"><block type="variables_get" id="Y+)``rNA[5Z19,UkzA;F"><field name="VAR" id="fikA@7zzh5g=g?mWRW4{">Kumba</field></block></value><value name="frames"><block type="animation_editor" id="|8jc1E^L_?Fr+miymDw$"><field name="frames">[img`
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
@@ -147,4 +163,4 @@
 . 5 5 c b b b b b . . . . . . . . . . . . . . . . . . . . . . . 
 . 5 5 c c . b 5 5 . . . . . . . . . . . . . . . . . . . . . . . 
 . 5 . . . . 5 5 5 5 . . . . . . . . . . . . . . . . . . . . . . 
-`]</field></block></value><value name="frameInterval"><shadow type="timePicker" id="$Paorl%%N%.4tq+@)hXX"><field name="ms">100</field></shadow></value><value name="loop"><shadow type="toggleOnOff" id="zha*wmDZvU{eO#,5p@;6"><field name="on">false</field></shadow></value></block></statement></block><block type="pxt-on-start" id="P2+py4-L#pZ%Q@v@!.sY" x="20" y="596"><statement name="HANDLER"><block type="function_call" id="eUAhAc:jol8%73t*#D^O"><mutation name="character" functionid="C}^dgGjT{CC{R`W-6OA1"/></block></statement></block><block type="gameupdate" id="_i_k.TcyMVOxhS,7/C+5" x="290" y="590"/></xml>
+`]</field></block></value><value name="frameInterval"><shadow type="timePicker" id="$Paorl%%N%.4tq+@)hXX"><field name="ms">100</field></shadow></value><value name="loop"><shadow type="toggleOnOff" id="zha*wmDZvU{eO#,5p@;6"><field name="on">true</field></shadow></value></block></statement></block><block type="pxt-on-start" id="P2+py4-L#pZ%Q@v@!.sY" x="20" y="596"><statement name="HANDLER"><block type="function_call" id="eUAhAc:jol8%73t*#D^O"><mutation name="character" functionid="C}^dgGjT{CC{R`W-6OA1"/></block></statement></block><block type="gameupdate" id="_i_k.TcyMVOxhS,7/C+5" x="290" y="590"/></xml>
