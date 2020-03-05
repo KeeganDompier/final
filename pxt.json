@@ -3,7 +3,9 @@
     "description": "",
     "dependencies": {
         "device": "*",
-        "animation": "*"
+        "animation": "*",
+        "Color Fading": "github:jwunderl/pxt-color#v0.0.32",
+        "color-coded-tilemap": "*"
     },
     "files": [
         "main.blocks",
