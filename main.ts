@@ -35,113 +35,10 @@ function character () {
 `, SpriteKind.Player)
     Kumba.ay = 200
 }
-function jump () {
-    animation.runImageAnimation(
-    Kumba,
-    [img`
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . 5 5 5 5 5 5 5 5 . . . . . . . . . . . . . . . . . . . . . . 
-. 5 5 c c c c c c 5 5 . . . . . . . . . . . . . . . . . . . . . 
-. 5 c c c c c c c c 5 . . . . . . . . . . . . . . . . . . . . . 
-. c c c c c c c c c c . . . . . . . . . . . . . . . . . . . . . 
-. c c c c c c c f d f . . . . . . . . . . . . . . . . . . . . . 
-. c c c c c c d f d f . . . . . . . . . . . . . . . . . . . . . 
-. c c c c c c d f d f . . . . . . . . . . . . . . . . . . . . . 
-. c c c c c c c c c c . . . . . . . . . . . . . . . . . . . . . 
-. c c c c c c c c c c . . . . . . . . . . . . . . . . . . . . . 
-. c c c c c c c c c c . . . . . . . . . . . . . . . . . . . . . 
-. . c c c c c c c c . . . . . . . . . . . . . . . . . . . . . . 
-. . . 5 5 5 5 b . . . . . . . . . . . . . . . . . . . . . . . . 
-. . b 5 b b 5 b b . . . . . . . . . . . . . . . . . . . . . . . 
-. b b 5 b b 5 b b . . . . . . . . . . . . . . . . . . . . . . . 
-. b b 5 b b 5 b b . . . . . . . . . . . . . . . . . . . . . . . 
-. b b 5 b b 5 b b . . . . . . . . . . . . . . . . . . . . . . . 
-. b b 5 5 5 5 b b . . . . . . . . . . . . . . . . . . . . . . . 
-. b b b c c b b b . . . . . . . . . . . . . . . . . . . . . . . 
-. b b b c c b b b . . . . . . . . . . . . . . . . . . . . . . . 
-. b b b c c b b . . . . . . . . . . . . . . . . . . . . . . . . 
-. . b c c c c . 5 . . . . . . . . . . . . . . . . . . . . . . . 
-. . f c c c c f 5 d d d d d d d d d . . . . . . . . . . . . . . 
-. . . b c c b . 5 . . . . . . . . . . . . . . . . . . . . . . . 
-. . . b b b b . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . b b b b . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . b b b b . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . b b b 5 5 5 . . . . . . . . . . . . . . . . . . . . . . . 
-. . . b b 5 5 5 5 5 . . . . . . . . . . . . . . . . . . . . . . 
-`,img`
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . 5 5 5 5 5 5 5 5 . . . . . . . . . . . . . . . . . . . . . 
-. . 5 5 c c c c c c 5 5 . . . . . . . . . . . . . . . . . . . . 
-. . 5 c c c c c c c c 5 . . . . . . . . . . . . . . . . . . . . 
-. . c c c c c c c c c c . . . . . . . . . . . . . . . . . . . . 
-. . c c c c c c c f d f . . . . . . . . . . . . . . . . . . . . 
-. . c c c c c c d f d f . . . . . . . . . . . . . . . . . . . . 
-. . c c c c c c d f d f . . . . . . . . . . . . . . . . . . . . 
-. . c c c c c c c c c c . . . . . . . . . . . . . . . . . . . . 
-. . c c c c c c c c c c . . . . . . . . . . . . . . . . . . . . 
-. . . c c c c c c c c . . . . . . . . . . . . . . . . . . . . . 
-. . . . 5 5 5 5 b . . . . . . . . . . . . . . . . . . . . . . . 
-. . . b 5 b b 5 b b . . . . . . . . . . . . . . . . . . . . . . 
-. . b b 5 b b 5 b b . . . . . . . . . . . . . . . . . . . . . . 
-. . b b 5 b b 5 b b . . . . . . . . . . . . . . . . . . . . . . 
-. . b b 5 b b 5 b b . . . . . . . . . . . . . . . . . . . . . . 
-. . b b 5 5 5 5 b b . . . . . . . . . . . . . . . . . . . . . . 
-. . b b b c c b b b . . . . . . . . . . . . . . . . . . . . . . 
-. . b b b c c b b b . . . . . . . . . . . . . . . . . . . . . . 
-. . b b b c c b b . . . . . . . . . . . . . . . . . . . . . . . 
-. . . b c c c c . 5 . . . . . . . . . . . . . . . . . . . . . . 
-. . . f c c c c f 5 d d d d d d d d d . . . . . . . . . . . . . 
-. . . . b c c b . 5 . . . . . . . . . . . . . . . . . . . . . . 
-. . . . b b b b . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . b b b b b . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . b b b b . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . 5 b b b . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . 5 5 b . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . 5 5 . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . 5 5 . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . 5 . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-`,img`
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . 5 5 5 5 5 5 5 5 . . . . . . . . . . . . . . . . . . . . . . 
-. 5 5 c c c c c c 5 5 . . . . . . . . . . . . . . . . . . . . . 
-. 5 c c c c c c c c 5 . . . . . . . . . . . . . . . . . . . . . 
-. c c c c c c c c c c . . . . . . . . . . . . . . . . . . . . . 
-. c c c c c c c f d f . . . . . . . . . . . . . . . . . . . . . 
-. c c c c c c d f d f . . . . . . . . . . . . . . . . . . . . . 
-. c c c c c c d f d f . . . . . . . . . . . . . . . . . . . . . 
-. c c c c c c c c c c . . . . . . . . . . . . . . . . . . . . . 
-. c c c c c c c c c c . . . . . . . . . . . . . . . . . . . . . 
-. c c c c c c c c c c . . . . . . . . . . . . . . . . . . . . . 
-. . c c c c c c c c . . . . . . . . . . . . . . . . . . . . . . 
-. . . 5 5 5 5 b . . . . . . . . . . . . . . . . . . . . . . . . 
-. . b 5 b b 5 b b . . . . . . . . . . . . . . . . . . . . . . . 
-. b b 5 b b 5 b b . . . . . . . . . . . . . . . . . . . . . . . 
-. b b 5 b b 5 b b . . . . . . . . . . . . . . . . . . . . . . . 
-. b b 5 b b 5 b b . . . . . . . . . . . . . . . . . . . . . . . 
-. b b 5 5 5 5 b b . . . . . . . . . . . . . . . . . . . . . . . 
-. b b b c c b b b . . . . . . . . . . . . . . . . . . . . . . . 
-. b b b c c b b b . . . . . . . . . . . . . . . . . . . . . . . 
-. b b b c c b b . . . . . . . . . . . . . . . . . . . . . . . . 
-. . b c c c c . 5 . . . . . . . . . . . . . . . . . . . . . . . 
-. . f c c c c f 5 d d d d d d d d d . . . . . . . . . . . . . . 
-. . . b c c b . 5 . . . . . . . . . . . . . . . . . . . . . . . 
-. . . b b b b . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . b b b b . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . b b b b . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . b b b 5 5 5 . . . . . . . . . . . . . . . . . . . . . . . 
-. . . b b 5 5 5 5 5 . . . . . . . . . . . . . . . . . . . . . . 
-`],
-    500,
-    false
-    )
-    Kumba.vy += -100
+function die_camera () {
+    if (Kumba.x == scene.cameraLeft()) {
+        game.over(false)
+    }
 }
 function camera () {
     projectile = sprites.createProjectileFromSide(img`
@@ -162,12 +59,8 @@ function camera () {
 . . . . . . . . . . . . . . . . 
 e e e e e e e e e e e e e e e e 
 `, 75, 0)
-    projectile.setPosition(Kumba.x, 125)
+    projectile.setPosition(80, 125)
 }
-controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
-    start()
-    camera()
-})
 function Level_1 () {
     scene.setTileMap(img`
 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 9 7 7 7 7 7 7 
@@ -273,6 +166,13 @@ e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e 
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     jump()
 })
+controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
+    start()
+    camera()
+})
+function jump () {
+    Kumba.vy += -100
+}
 function start () {
     animation.runImageAnimation(
     Kumba,
@@ -412,7 +312,7 @@ function start () {
     100,
     true
     )
-    Kumba.setVelocity(75, 0)
+    controller.moveSprite(Kumba, 75, 0)
 }
 let projectile: Sprite = null
 let Kumba: Sprite = null
@@ -420,4 +320,5 @@ character()
 Level_1()
 game.onUpdate(function () {
     scene.cameraFollowSprite(projectile)
+    die_camera()
 })
