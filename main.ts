@@ -1,4 +1,5 @@
 function character () {
+    // sets sprite
     Kumba = sprites.create(img`
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
@@ -36,11 +37,17 @@ function character () {
     Kumba.ay = 200
 }
 function die_camera () {
+    // If character goes off screen, then he dies
     if (Kumba.x == scene.cameraLeft()) {
         game.over(false)
     }
 }
+function Level_1_splash () {
+    game.splash("Level 1, travel into the future with the portal while avoiding monsters or moving too slowly")
+}
 function camera () {
+    // Once the game starts, the camera will go at a
+    // consistent pace
     projectile = sprites.createProjectileFromSide(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -62,6 +69,7 @@ e e e e e e e e e e e e e e e e
     projectile.setPosition(80, 125)
 }
 function Level_1 () {
+    // Sets tile map
     scene.setTileMap(img`
 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 9 7 7 7 7 7 7 
 7 9 7 7 7 9 7 7 7 7 7 7 9 7 7 7 7 7 7 7 9 7 7 7 9 7 7 7 7 7 7 7 7 7 7 7 7 7 9 7 9 7 7 7 7 7 9 7 7 f 
@@ -73,22 +81,22 @@ e e e e e e e e e e e e 7 7 7 7 6 7 7 e e e e e e e e e e e e e 7 7 7 e e e e e 
 e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e 
 `)
     scene.setTile(14, img`
-1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
-1 1 1 1 1 1 1 1 9 1 1 1 1 1 1 1 
-1 9 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
-1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
-1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
-1 1 1 1 1 1 1 9 1 1 1 1 1 1 1 1 
-1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
-1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
-1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
-1 1 1 1 1 9 1 1 1 1 1 1 1 1 1 1 
-1 1 1 1 1 1 1 1 1 1 1 1 1 1 9 1 
-1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
-1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
-1 1 9 1 1 1 1 1 1 1 1 1 1 1 1 1 
-1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
-1 1 1 1 1 1 1 1 1 1 1 1 1 9 1 1 
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+7 7 7 7 7 7 7 7 f 7 7 7 7 7 7 7 
+7 f 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+7 7 7 7 7 7 7 f 7 7 7 7 7 7 7 7 
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+7 7 7 7 7 9 7 7 7 7 7 7 7 7 7 7 
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 9 7 
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+7 7 9 7 7 7 7 7 7 7 7 7 7 7 7 7 
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+7 7 7 7 7 7 7 7 7 7 7 7 7 9 7 7 
 `, true)
     scene.setTile(6, img`
 9 d d d d d d d d d d d d d d 9 
@@ -162,18 +170,39 @@ e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e 
 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
 `, false)
+    scene.setTile(15, img`
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 a a 9 9 9 9 9 9 9 
+9 9 9 9 9 7 a 5 5 5 5 5 9 9 9 9 
+9 9 9 9 7 a 5 9 4 4 4 9 5 9 9 9 
+9 9 9 b 7 a 5 4 b b b 4 9 9 9 9 
+9 9 4 b 7 a 5 b 7 7 7 b 4 9 9 9 
+9 9 4 b 7 a 5 f f a a 7 b 4 9 9 
+9 9 4 b 7 a a f f 5 a 7 b 4 9 9 
+9 9 9 4 b 7 7 7 b 5 a 7 b 4 9 9 
+9 9 9 9 4 b b b 4 5 a 7 b 9 9 9 
+9 9 9 5 9 4 4 4 9 5 a 7 9 9 9 9 
+9 9 9 9 5 5 5 5 5 a 7 9 9 9 9 9 
+9 9 9 9 9 9 9 a a 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+`, false)
 }
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     jump()
 })
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     start()
-    camera()
 })
 function jump () {
-    Kumba.vy += -100
+    if (Kumba.isHittingTile(CollisionDirection.Bottom)) {
+        // Makes Character jump
+        Kumba.vy += -100
+    }
 }
 function start () {
+    // Animates main Character to walk
     animation.runImageAnimation(
     Kumba,
     [img`
@@ -316,8 +345,10 @@ function start () {
 }
 let projectile: Sprite = null
 let Kumba: Sprite = null
+Level_1_splash()
 character()
 Level_1()
+camera()
 game.onUpdate(function () {
     scene.cameraFollowSprite(projectile)
     die_camera()
