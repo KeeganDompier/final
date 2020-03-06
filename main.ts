@@ -1,3 +1,6 @@
+function Level_1_splash () {
+    game.splash("Level 1, travel into the future with the portal while avoiding monsters or moving too slowly")
+}
 function character () {
     // sets sprite
     Kumba = sprites.create(img`
@@ -38,12 +41,9 @@ function character () {
 }
 function die_camera () {
     // If character goes off screen, then he dies
-    if (Kumba.x == scene.cameraLeft()) {
+    if (Kumba.x <= scene.cameraLeft()) {
         game.over(false)
     }
-}
-function Level_1_splash () {
-    game.splash("Level 1, travel into the future with the portal while avoiding monsters or moving too slowly")
 }
 function camera () {
     // Once the game starts, the camera will go at a
