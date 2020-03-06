@@ -45,6 +45,9 @@ function die_camera () {
         game.over(false)
     }
 }
+function Level_1_enemy () {
+	
+}
 function camera () {
     // Once the game starts, the camera will go at a
     // consistent pace
