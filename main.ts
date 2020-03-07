@@ -1,3 +1,24 @@
+namespace myTiles {
+    //% blockIdentity=images._tile
+    export const tile0 = img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`
+}
 function Level_1_splash () {
     game.splash("Level 1, travel into the future with the portal while avoiding monsters or moving too slowly")
 }
@@ -29,7 +50,7 @@ function character () {
 . b b b c c b b b . . . . . . . . . . . . . . . . . . . . . . . 
 . b b b c c b b . . . . . . . . . . . . . . . . . . . . . . . . 
 . . b c c c c . 5 . . . . . . . . . . . . . . . . . . . . . . . 
-. . f c c c c f 5 d d d d d d d d d . . . . . . . . . . . . . . 
+. . f c c c c f 5 d d d d d d d . . . . . . . . . . . . . . . . 
 . . . b c c b . 5 . . . . . . . . . . . . . . . . . . . . . . . 
 . . . b b b b . . . . . . . . . . . . . . . . . . . . . . . . . 
 . . . b b b b . . . . . . . . . . . . . . . . . . . . . . . . . 
@@ -45,17 +66,96 @@ function die_camera () {
         game.over(false)
     }
 }
+scene.onOverlapTile(SpriteKind.Player, img`
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 a a 9 9 9 9 9 9 9 
+9 9 9 9 9 7 a 5 5 5 5 5 9 9 9 9 
+9 9 9 9 7 a 5 9 4 4 4 9 5 9 9 9 
+9 9 9 b 7 a 5 4 b b b 4 9 9 9 9 
+9 9 4 b 7 a 5 b 7 7 7 b 4 9 9 9 
+9 9 4 b 7 a 5 f f a a 7 b 4 9 9 
+9 9 4 b 7 a a f f 5 a 7 b 4 9 9 
+9 9 9 4 b 7 7 7 b 5 a 7 b 4 9 9 
+9 9 9 9 4 b b b 4 5 a 7 b 9 9 9 
+9 9 9 5 9 4 4 4 9 5 a 7 9 9 9 9 
+9 9 9 9 5 5 5 5 5 a 7 9 9 9 9 9 
+9 9 9 9 9 9 9 a a 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+`, function (sprite, location) {
+    info.changeScoreBy(1)
+})
 function Level_2 () {
     scene.setTileMap(img`
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 7 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 7 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 7 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 7 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 7 7 7 7 7 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 7 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 7 7 7 7 7 7 7 7 7 7 7 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 7 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 7 7 7 5 7 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
 `)
+    Todd_and_Jared_1.destroy()
+    Tom_and_Jared_2.destroy()
+    Tom_and_Jared_3.destroy()
+    projectile.setPosition(80, 125)
+    projectile.setPosition(80, 110)
+    scene.setTile(7, img`
+1 f f f f f f f f f f f f f f 1 
+2 1 f f f f f f f f f f f f 1 2 
+2 2 1 f f f f f f f f f f 1 2 2 
+2 2 2 1 f f f f f f f f 1 2 2 2 
+2 2 2 2 1 f f f f f f 1 2 2 2 2 
+2 2 2 2 2 1 f f f f 1 2 2 2 2 2 
+2 2 2 2 2 2 1 f f 1 2 2 2 2 2 2 
+2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 
+2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 
+2 2 2 2 2 2 1 f f 1 2 2 2 2 2 2 
+2 2 2 2 2 1 f f f f 1 2 2 2 2 2 
+2 2 2 2 1 f f f f f f 1 2 2 2 2 
+2 2 2 1 f f f f f f f f 1 2 2 2 
+2 2 1 f f f f f f f f f f 1 2 2 
+2 1 f f f f f f f f f f f f 1 2 
+1 f f f f f f f f f f f f f f 1 
+`, true)
+    scene.setTile(9, img`
+a a a a a a a a a a a a a a a a 
+a a a a a a a a a a a a a a a a 
+a a a a a a a a a a a a a a a a 
+a a a a a a a a a a a a a a a a 
+a a a a a a a a a a a a a a a a 
+a a a a a a a a a a a a a a a a 
+a a a a a a a a a a a a a a a a 
+a a a a a a a a a a a a a a a a 
+a a a a a a a a a a a a a a a a 
+a a a a a a a a a a a a a a a a 
+a a a a a a a a a a a a a a a a 
+a a a a a a a a a a a a a a a a 
+a a a a a a a a a a a a a a a a 
+a a a a a a a a a a a a a a a a 
+a a a a a a a a a a a a a a a a 
+a a a a a a a a a a a a a a a a 
+`, false)
+    scene.setTile(5, img`
+2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
+2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
+d a a a a a a a a a a a a a a d 
+a d a a a a a a a a a a a a d a 
+a a d a a a a a a a a a a d a a 
+a a a d d a a a a a a d d a a a 
+a a a a a d a a a a d a a a a a 
+a a a a a a d a a d a a a a a a 
+a a a a a a a d d a a a a a a a 
+a a a a a a a d d a a a a a a a 
+a a a a a a d a a d a a a a a a 
+a a a a a d a a a a d a a a a a 
+a a a d d a a a a a a d d a a a 
+a a d a a a a a a a a a a d a a 
+a d a a a a a a a a a a a a d a 
+d a a a a a a a a a a a a a a d 
+`, false)
 }
 function camera () {
     // Once the game starts, the camera will go at a
@@ -200,10 +300,34 @@ e e e e e e e e e e e e e f e e
 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
 `, false)
+    info.setScore(0)
 }
+scene.onOverlapTile(SpriteKind.Player, img`
+2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
+2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
+d a a a a a a a a a a a a a a d 
+a d a a a a a a a a a a a a d a 
+a a d a a a a a a a a a a d a a 
+a a a d d a a a a a a d d a a a 
+a a a a a d a a a a d a a a a a 
+a a a a a a d a a d a a a a a a 
+a a a a a a a d d a a a a a a a 
+a a a a a a a d d a a a a a a a 
+a a a a a a d a a d a a a a a a 
+a a a a a d a a a a d a a a a a 
+a a a d d a a a a a a d d a a a 
+a a d a a a a a a a a a a d a a 
+a d a a a a a a a a a a a a d a 
+d a a a a a a a a a a a a a a d 
+`, function (sprite, location) {
+    Kumba.ay = 500
+})
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     jump()
 })
+function Level_4 () {
+	
+}
 function Level_1_enemies () {
     Todd_and_Jared_1 = sprites.create(img`
 . 2 2 2 2 2 . . . . 2 2 2 2 2 . 
@@ -1160,6 +1284,17 @@ function jump () {
         Kumba.vy += -100
     }
 }
+function Call_levels () {
+    if (info.score() == 1) {
+        Level_2()
+    }
+    if (info.score() == 2) {
+        Level_3()
+    }
+    if (info.score() == 3) {
+        Level_4()
+    }
+}
 function start () {
     // Animates main Character to walk
     animation.runImageAnimation(
@@ -1190,7 +1325,7 @@ function start () {
 . b b b c c b b b . . . . . . . . . . . . . . . . . . . . . . . 
 . b b b c c b b . . . . . . . . . . . . . . . . . . . . . . . . 
 . . b c c c c . 5 . . . . . . . . . . . . . . . . . . . . . . . 
-. . f c c c c f 5 d d d d d d d d d . . . . . . . . . . . . . . 
+. . f c c c c f 5 d d d d d d d . . . . . . . . . . . . . . . . 
 . . . b c c b . 5 . . . . . . . . . . . . . . . . . . . . . . . 
 . . . b b b b . . . . . . . . . . . . . . . . . . . . . . . . . 
 . . . b b b b . . . . . . . . . . . . . . . . . . . . . . . . . 
@@ -1223,7 +1358,7 @@ function start () {
 . b b b c c b b b . . . . . . . . . . . . . . . . . . . . . . . 
 . b b b c c b b . . . . . . . . . . . . . . . . . . . . . . . . 
 . . b c c c c . 5 . . . . . . . . . . . . . . . . . . . . . . . 
-. . f c c c c f 5 d d d d d d d d d . . . . . . . . . . . . . . 
+. . f c c c c f 5 d d d d d d d . . . . . . . . . . . . . . . . 
 . . . b c c b . 5 . . . . . . . . . . . . . . . . . . . . . . . 
 . . . b b b b . . . . . . . . . . . . . . . . . . . . . . . . . 
 . 5 5 b b b b c . . . . . . . . . . . . . . . . . . . . . . . . 
@@ -1256,7 +1391,7 @@ function start () {
 . b b b c c b b b . . . . . . . . . . . . . . . . . . . . . . . 
 . b b b c c b b . . . . . . . . . . . . . . . . . . . . . . . . 
 . . b c c c c . 5 . . . . . . . . . . . . . . . . . . . . . . . 
-. . f c c c c f 5 d d d d d d d d d . . . . . . . . . . . . . . 
+. . f c c c c f 5 d d d d d d d . . . . . . . . . . . . . . . . 
 . . . b c c b . 5 . . . . . . . . . . . . . . . . . . . . . . . 
 . . . b b b b . . . . . . . . . . . . . . . . . . . . . . . . . 
 . . . b b b b . . . . . . . . . . . . . . . . . . . . . . . . . 
@@ -1289,7 +1424,7 @@ function start () {
 . b b b c c b b b . . . . . . . . . . . . . . . . . . . . . . . 
 . b b b c c b b . . . . . . . . . . . . . . . . . . . . . . . . 
 . . b c c c c . 5 . . . . . . . . . . . . . . . . . . . . . . . 
-. . f c c c c f 5 d d d d d d d d d . . . . . . . . . . . . . . 
+. . f c c c c f 5 d d d d d d d . . . . . . . . . . . . . . . . 
 . . . b c c b . 5 . . . . . . . . . . . . . . . . . . . . . . . 
 . . . b b b b . . . . . . . . . . . . . . . . . . . . . . . . . 
 . 5 5 b b b b b . . . . . . . . . . . . . . . . . . . . . . . . 
@@ -1302,17 +1437,21 @@ function start () {
     )
     controller.moveSprite(Kumba, 75, 0)
 }
+function Level_3 () {
+	
+}
+let projectile: Sprite = null
 let Tom_and_Jared_3: Sprite = null
 let Tom_and_Jared_2: Sprite = null
 let Todd_and_Jared_1: Sprite = null
-let projectile: Sprite = null
 let Kumba: Sprite = null
 Level_1_splash()
 character()
-Level_1()
 camera()
+Level_1()
 Level_1_enemies()
 game.onUpdate(function () {
-    scene.cameraFollowSprite(projectile)
     die_camera()
+    scene.cameraFollowSprite(projectile)
+    Call_levels()
 })
