@@ -8,7 +8,11 @@
         "color-coded-tilemap": "*",
         "keyboard": "*",
         "sevenseg": "*",
-        "pxt-button-combos": "github:jwunderl/pxt-button-combos#v0.0.23"
+        "pxt-button-combos": "github:jwunderl/pxt-button-combos#v0.0.23",
+        "storyboard": "*",
+        "mouse": "*",
+        "jacdac-game": "*",
+        "light": "*"
     },
     "files": [
         "main.blocks",
