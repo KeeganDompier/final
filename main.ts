@@ -66,9 +66,6 @@ function die_camera () {
         game.over(false)
     }
 }
-function Level_2_boosters () {
-	
-}
 scene.onOverlapTile(SpriteKind.Player, img`
 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
@@ -1258,6 +1255,9 @@ function Call_levels () {
     if (Level == 4) {
         Level_4()
     }
+}
+function Level_2_boosters () {
+	
 }
 function start () {
     // Animates main Character to walk
