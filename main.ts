@@ -62,7 +62,7 @@ function character () {
 }
 function die_camera () {
     // If character goes off screen, then he dies
-    if (Kumba.x <= scene.cameraLeft()) {
+    if (Kumba.x <= scene.cameraLeft() || Kumba.x >= scene.cameraLeft() + 160) {
         game.over(false)
     }
 }
@@ -86,27 +86,50 @@ scene.onOverlapTile(SpriteKind.Player, img`
 `, function (sprite, location) {
     Level = 2
 })
+function camera_start () {
+    // Once the game starts, the camera will go at a
+    // consistent pace
+    projectile = sprites.createProjectileFromSide(img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+e e e e e e e e e e e e e e e e 
+`, 75, 0)
+    projectile.setPosition(80, 125)
+}
 function Level_2 () {
     Todd_and_Jared_1.destroy()
     Tom_and_Jared_2.destroy()
     Tom_and_Jared_3.destroy()
     scene.setTile(14, img`
+2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
 f 2 2 2 2 2 2 2 2 2 2 2 2 2 2 f 
-f f 2 2 2 2 2 2 f 2 2 2 2 2 f f 
+f f 2 2 2 2 2 2 2 2 2 2 2 2 f f 
 f f f 2 2 2 2 2 2 2 2 2 2 f f f 
 f f f f 2 2 2 2 2 2 2 2 f f f f 
 f f f f f 2 2 2 2 2 2 f f f f f 
-f f f f f f 2 f 2 2 f f f f f f 
+f f f f f f 2 2 2 2 f f f f f f 
 f f f f f f f 2 2 f f f f f f f 
-f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f 
 f f f f f f f 2 2 f f f f f f f 
 f f f f f f 2 2 2 2 f f f f f f 
 f f f f f 2 2 2 2 2 2 f f f f f 
 f f f f 2 2 2 2 2 2 2 2 f f f f 
 f f f 2 2 2 2 2 2 2 2 2 2 f f f 
 f f 2 2 2 2 2 2 2 2 2 2 2 2 f f 
-f 2 2 2 2 2 2 2 2 2 2 2 2 f e f 
+f 2 2 2 2 2 2 2 2 2 2 2 2 2 2 f 
+2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
 `, true)
     scene.setTile(6, img`
 9 d d d d d d d d d d d d d d 9 
@@ -252,36 +275,19 @@ f 2 2 2 2 2 2 2 2 2 2 2 2 f e f
 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
 `, false)
+    Camera_level_2()
 }
-function camera () {
-    // Once the game starts, the camera will go at a
-    // consistent pace
-    projectile = sprites.createProjectileFromSide(img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-e e e e e e e e e e e e e e e e 
-`, 75, 0)
-    projectile.setPosition(80, 125)
+function Camera_level_2 () {
+    if (Level == 2) {
+        projectile.setVelocity(-75, 0)
+    }
 }
 function Level_1 () {
     // Sets tile map
     scene.setTileMap(img`
-3 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 9 7 7 7 7 7 b 
-5 9 7 7 7 9 7 7 7 7 7 7 9 7 7 7 7 7 7 7 9 7 7 7 9 7 7 7 7 7 7 7 7 7 7 7 7 7 9 7 9 7 7 7 7 7 9 7 7 f 
-4 7 4 7 7 7 7 7 9 7 4 7 7 7 9 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 9 7 7 9 7 7 7 7 7 7 7 7 9 7 7 7 7 7 e 
+3 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 9 7 7 7 7 7 7 
+5 9 7 7 7 9 7 7 7 7 7 7 9 7 7 7 7 7 7 7 9 7 7 7 9 7 7 7 7 7 7 7 7 7 7 7 7 7 9 7 9 7 7 7 7 7 9 7 b 7 
+4 7 4 7 7 7 7 7 9 7 4 7 7 7 9 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 9 7 7 9 7 7 7 7 7 7 7 7 9 7 7 7 7 f e 
 6 7 6 7 7 7 7 7 7 7 6 7 7 7 7 7 7 7 7 7 9 7 7 7 7 7 9 7 7 7 7 7 7 7 7 7 7 7 7 9 7 7 7 7 7 7 7 7 e e 
 6 7 6 7 7 7 7 7 7 7 6 7 7 7 7 7 4 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 9 7 7 7 7 7 7 7 7 7 7 7 9 7 e e e 
 e e e e e e e e 7 7 6 7 7 7 7 7 6 7 7 7 7 7 7 7 7 7 7 7 7 7 e e 7 7 7 7 e e e 7 7 7 e 7 7 7 e e e e 
@@ -1573,19 +1579,20 @@ function start () {
 function Level_3 () {
 	
 }
-let projectile: Sprite = null
 let Tom_and_Jared_3: Sprite = null
 let Tom_and_Jared_2: Sprite = null
 let Todd_and_Jared_1: Sprite = null
+let projectile: Sprite = null
 let Level = 0
 let Kumba: Sprite = null
 Level_1_splash()
 character()
 Level_1_enemies()
 Level_1()
-camera()
+camera_start()
 game.onUpdate(function () {
     die_camera()
     scene.cameraFollowSprite(projectile)
     Call_levels()
+    Camera_after_start()
 })
