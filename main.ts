@@ -19,10 +19,58 @@ namespace myTiles {
 . . . . . . . . . . . . . . . . 
 `
 }
+function camera_lv_2 () {
+    Camera_lv_2 = sprites.createProjectileFromSide(img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+e e e e e e e e e e e e e e e e 
+`, -75, 0)
+    Camera_lv_2.setPosition(750, 125)
+}
 function Level_1_splash () {
     game.splash("Level 1, travel into the future with the portal while avoiding monsters or moving too slowly")
 }
-function character () {
+function die_camera () {
+    // If character goes off screen, then he dies
+    if (Kumba.x <= scene.cameraLeft() || Kumba.x >= scene.cameraLeft() + 160) {
+        game.over(false)
+    }
+}
+scene.onOverlapTile(SpriteKind.Player, img`
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 a a 9 9 9 9 9 9 9 
+9 9 9 9 9 7 a 5 5 5 5 5 9 9 9 9 
+9 9 9 9 7 a 5 9 4 4 4 9 5 9 9 9 
+9 9 9 b 7 a 5 4 b b b 4 9 9 9 9 
+9 9 4 b 7 a 5 b 7 7 7 b 4 9 9 9 
+9 9 4 b 7 a 5 f f a a 7 b 4 9 9 
+9 9 4 b 7 a a f f 5 a 7 b 4 9 9 
+9 9 9 4 b 7 7 7 b 5 a 7 b 4 9 9 
+9 9 9 9 4 b b b 4 5 a 7 b 9 9 9 
+9 9 9 5 9 4 4 4 9 5 a 7 9 9 9 9 
+9 9 9 9 5 5 5 5 5 a 7 9 9 9 9 9 
+9 9 9 9 9 9 9 a a 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+`, function (sprite, location) {
+    Level = 2
+    camera_lv_2()
+})
+function character_start () {
     // sets sprite
     Kumba = sprites.create(img`
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
@@ -60,76 +108,27 @@ function character () {
 `, SpriteKind.Player)
     Kumba.ay = 200
 }
-function die_camera () {
-    // If character goes off screen, then he dies
-    if (Kumba.x <= scene.cameraLeft() || Kumba.x >= scene.cameraLeft() + 160) {
-        game.over(false)
-    }
-}
-scene.onOverlapTile(SpriteKind.Player, img`
-9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
-9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
-9 9 9 9 9 9 9 a a 9 9 9 9 9 9 9 
-9 9 9 9 9 7 a 5 5 5 5 5 9 9 9 9 
-9 9 9 9 7 a 5 9 4 4 4 9 5 9 9 9 
-9 9 9 b 7 a 5 4 b b b 4 9 9 9 9 
-9 9 4 b 7 a 5 b 7 7 7 b 4 9 9 9 
-9 9 4 b 7 a 5 f f a a 7 b 4 9 9 
-9 9 4 b 7 a a f f 5 a 7 b 4 9 9 
-9 9 9 4 b 7 7 7 b 5 a 7 b 4 9 9 
-9 9 9 9 4 b b b 4 5 a 7 b 9 9 9 
-9 9 9 5 9 4 4 4 9 5 a 7 9 9 9 9 
-9 9 9 9 5 5 5 5 5 a 7 9 9 9 9 9 
-9 9 9 9 9 9 9 a a 9 9 9 9 9 9 9 
-9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
-9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
-`, function (sprite, location) {
-    Level = 2
-})
-function camera_start () {
-    // Once the game starts, the camera will go at a
-    // consistent pace
-    projectile = sprites.createProjectileFromSide(img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-e e e e e e e e e e e e e e e e 
-`, 75, 0)
-    projectile.setPosition(80, 125)
-}
 function Level_2 () {
     Todd_and_Jared_1.destroy()
     Tom_and_Jared_2.destroy()
     Tom_and_Jared_3.destroy()
     scene.setTile(14, img`
-2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
-f 2 2 2 2 2 2 2 2 2 2 2 2 2 2 f 
-f f 2 2 2 2 2 2 2 2 2 2 2 2 f f 
-f f f 2 2 2 2 2 2 2 2 2 2 f f f 
-f f f f 2 2 2 2 2 2 2 2 f f f f 
-f f f f f 2 2 2 2 2 2 f f f f f 
-f f f f f f 2 2 2 2 f f f f f f 
-f f f f f f f 2 2 f f f f f f f 
-f f f f f f f 2 2 f f f f f f f 
-f f f f f f 2 2 2 2 f f f f f f 
-f f f f f 2 2 2 2 2 2 f f f f f 
-f f f f 2 2 2 2 2 2 2 2 f f f f 
-f f f 2 2 2 2 2 2 2 2 2 2 f f f 
-f f 2 2 2 2 2 2 2 2 2 2 2 2 f f 
-f 2 2 2 2 2 2 2 2 2 2 2 2 2 2 f 
-2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+b 1 b b b b b b b b b b b b 1 b 
+b b 1 b b b b b b b b b b 1 b b 
+b b b 1 b b b b b b b b 1 b b b 
+b b b b 1 b b b b b b 1 b b b b 
+b b b b b 1 b b b b 1 b b b b b 
+b b b b b b 1 b b 1 b b b b b b 
+b b b b b b b 1 1 b b b b b b b 
+b b b b b b b 1 1 b b b b b b b 
+b b b b b b 1 b b 1 b b b b b b 
+b b b b b 1 b b b b 1 b b b b b 
+b b b b 1 b b b b b b 1 b b b b 
+b b b 1 b b b b b b b b 1 b b b 
+b b 1 b b b b b b b b b b 1 b b 
+b 1 b b b b b b b b b b b b 1 b 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
 `, true)
     scene.setTile(6, img`
 9 d d d d d d d d d d d d d d 9 
@@ -186,40 +185,40 @@ f 2 2 2 2 2 2 2 2 2 2 2 2 2 2 f
 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
 `, false)
     scene.setTile(7, img`
-9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
-9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
-9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
-9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
-9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
-9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
-9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
-9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
-9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
-9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
-9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
-9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
-9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
-9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
-9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
-9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
 `, false)
     scene.setTile(15, img`
-9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
-9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
-9 9 9 9 9 9 9 a a 9 9 9 9 9 9 9 
-9 9 9 9 9 7 a 5 5 5 5 5 9 9 9 9 
-9 9 9 9 7 a 5 9 4 4 4 9 5 9 9 9 
-9 9 9 b 7 a 5 4 b b b 4 9 9 9 9 
-9 9 4 b 7 a 5 b 7 7 7 b 4 9 9 9 
-9 9 4 b 7 a 5 f f a a 7 b 4 9 9 
-9 9 4 b 7 a a f f 5 a 7 b 4 9 9 
-9 9 9 4 b 7 7 7 b 5 a 7 b 4 9 9 
-9 9 9 9 4 b b b 4 5 a 7 b 9 9 9 
-9 9 9 5 9 4 4 4 9 5 a 7 9 9 9 9 
-9 9 9 9 5 5 5 5 5 a 7 9 9 9 9 9 
-9 9 9 9 9 9 9 a a 9 9 9 9 9 9 9 
-9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
-9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
 `, false)
     scene.setTile(3, img`
 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
@@ -275,12 +274,7 @@ f 2 2 2 2 2 2 2 2 2 2 2 2 2 2 f
 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
 `, false)
-    Camera_level_2()
-}
-function Camera_level_2 () {
-    if (Level == 2) {
-        projectile.setVelocity(-75, 0)
-    }
+    scene.cameraFollowSprite(Camera_lv_2)
 }
 function Level_1 () {
     // Sets tile map
@@ -290,7 +284,7 @@ function Level_1 () {
 4 7 4 7 7 7 7 7 9 7 4 7 7 7 9 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 9 7 7 9 7 7 7 7 7 7 7 7 9 7 7 7 7 f e 
 6 7 6 7 7 7 7 7 7 7 6 7 7 7 7 7 7 7 7 7 9 7 7 7 7 7 9 7 7 7 7 7 7 7 7 7 7 7 7 9 7 7 7 7 7 7 7 7 e e 
 6 7 6 7 7 7 7 7 7 7 6 7 7 7 7 7 4 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 9 7 7 7 7 7 7 7 7 7 7 7 9 7 e e e 
-e e e e e e e e 7 7 6 7 7 7 7 7 6 7 7 7 7 7 7 7 7 7 7 7 7 7 e e 7 7 7 7 e e e 7 7 7 e 7 7 7 e e e e 
+e e e e e e e e 7 7 6 7 7 7 7 7 6 7 7 7 7 7 7 7 7 7 7 7 7 7 e 7 7 7 7 7 e e e 7 7 7 e 7 7 7 e e e e 
 e e e e e e e e e e e e 7 7 7 7 6 7 7 e e e e e e e e e e e e e 7 7 7 e e e e e 7 e e e 7 e e e e e 
 e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e 
 `)
@@ -466,144 +460,127 @@ function Level_4 () {
 }
 function Level_1_enemies () {
     Todd_and_Jared_1 = sprites.create(img`
-. 5 5 5 5 5 . . . . 5 5 5 5 5 . 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 f 1 5 f 1 5 . . 5 f 1 5 f 1 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
+. e e e e e . . . . e e e e e . 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e f 1 e f 1 e . . e f 1 e f 1 e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
 `, SpriteKind.Enemy)
     animation.runImageAnimation(
     Todd_and_Jared_1,
     [img`
-. 5 5 5 5 5 . . . . 5 5 5 5 5 . 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 f 1 5 f 1 5 . . 5 f 1 5 f 1 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
+. e e e e e . . . . e e e e e . 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e f 1 e f 1 e . . e f 1 e f 1 e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
 `,img`
 . . . . . . . . . . . . . . . . 
-. 5 5 5 5 5 . . . . 5 5 5 5 5 . 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 f 1 5 f 1 5 . . 5 f 1 5 f 1 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-`,img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. 5 5 5 5 5 . . . . 5 5 5 5 5 . 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 f 1 5 f 1 5 . . 5 f 1 5 f 1 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
+. e e e e e . . . . e e e e e . 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e f 1 e f 1 e . . e f 1 e f 1 e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
 `,img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. 5 5 5 5 5 . . . . 5 5 5 5 5 . 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 f 1 5 f 1 5 . . 5 f 1 5 f 1 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
+. e e e e e . . . . e e e e e . 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e f 1 e f 1 e . . e f 1 e f 1 e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
 `,img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. 5 5 5 5 5 . . . . 5 5 5 5 5 . 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 f 1 5 f 1 5 . . 5 f 1 5 f 1 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
+. e e e e e . . . . e e e e e . 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e f 1 e f 1 e . . e f 1 e f 1 e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
 `,img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. 5 5 5 5 5 . . . . 5 5 5 5 5 . 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 f 1 5 f 1 5 . . 5 f 1 5 f 1 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
+. e e e e e . . . . e e e e e . 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e f 1 e f 1 e . . e f 1 e f 1 e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
 `,img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. 5 5 5 5 5 . . . . 5 5 5 5 5 . 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 f 1 5 f 1 5 . . 5 f 1 5 f 1 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
+. e e e e e . . . . e e e e e . 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e f 1 e f 1 e . . e f 1 e f 1 e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
 `,img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -611,16 +588,16 @@ function Level_1_enemies () {
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. 5 5 5 5 5 . . . . 5 5 5 5 5 . 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 f 1 5 f 1 5 . . 5 f 1 5 f 1 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
+. e e e e e . . . . e e e e e . 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e f 1 e f 1 e . . e f 1 e f 1 e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
 `,img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -629,15 +606,15 @@ function Level_1_enemies () {
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. 5 5 5 5 5 . . . . 5 5 5 5 5 . 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 f 1 5 f 1 5 . . 5 f 1 5 f 1 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
+. e e e e e . . . . e e e e e . 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e f 1 e f 1 e . . e f 1 e f 1 e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
 `,img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -647,14 +624,14 @@ function Level_1_enemies () {
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. 5 5 5 5 5 . . . . 5 5 5 5 5 . 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 f 1 5 f 1 5 . . 5 f 1 5 f 1 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
+. e e e e e . . . . e e e e e . 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e f 1 e f 1 e . . e f 1 e f 1 e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
 `,img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -665,13 +642,13 @@ function Level_1_enemies () {
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. 5 5 5 5 5 . . . . 5 5 5 5 5 . 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 f 1 5 f 1 5 . . 5 f 1 5 f 1 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
+. e e e e e . . . . e e e e e . 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e f 1 e f 1 e . . e f 1 e f 1 e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
 `,img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -683,12 +660,12 @@ function Level_1_enemies () {
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. 5 5 5 5 5 . . . . 5 5 5 5 5 . 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 f 1 5 f 1 5 . . 5 f 1 5 f 1 5 
+. e e e e e . . . . e e e e e . 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e f 1 e f 1 e . . e f 1 e f 1 e 
+e e e e e e e . . e e e e e e e 
 `,img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -701,11 +678,11 @@ function Level_1_enemies () {
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. 5 5 5 5 5 . . . . 5 5 5 5 5 . 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
+. e e e e e . . . . e e e e e . 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e f 1 e f 1 e . . e f 1 e f 1 e 
 `,img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -719,10 +696,10 @@ function Level_1_enemies () {
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. 5 5 5 5 5 . . . . 5 5 5 5 5 . 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
+. e e e e e . . . . e e e e e . 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
 `,img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -737,9 +714,9 @@ function Level_1_enemies () {
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. 5 5 5 5 5 . . . . 5 5 5 5 5 . 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
+. e e e e e . . . . e e e e e . 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
 `,img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -755,8 +732,25 @@ function Level_1_enemies () {
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
+. e e e e e . . . . e e e e e . 
+e e e e e e e . . e e e e e e e 
+`,img`
 . . . . . . . . . . . . . . . . 
-. 5 5 5 5 5 . . . . 5 5 5 5 5 . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. e e e e e . . . . e e e e e . 
 `,img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -778,146 +772,129 @@ function Level_1_enemies () {
     100,
     true
     )
-    Todd_and_Jared_1.setPosition(280, 105)
+    Todd_and_Jared_1.setPosition(280, 104)
     Tom_and_Jared_2 = sprites.create(img`
-. 5 5 5 5 5 . . . . 5 5 5 5 5 . 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 f 1 5 f 1 5 . . 5 f 1 5 f 1 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
+. e e e e e . . . . e e e e e . 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e f 1 e f 1 e . . e f 1 e f 1 e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
 `, SpriteKind.Enemy)
     animation.runImageAnimation(
     Tom_and_Jared_2,
     [img`
-. 5 5 5 5 5 . . . . 5 5 5 5 5 . 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 f 1 5 f 1 5 . . 5 f 1 5 f 1 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
+. e e e e e . . . . e e e e e . 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e f 1 e f 1 e . . e f 1 e f 1 e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
 `,img`
 . . . . . . . . . . . . . . . . 
-. 5 5 5 5 5 . . . . 5 5 5 5 5 . 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 f 1 5 f 1 5 . . 5 f 1 5 f 1 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-`,img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. 5 5 5 5 5 . . . . 5 5 5 5 5 . 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 f 1 5 f 1 5 . . 5 f 1 5 f 1 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
+. e e e e e . . . . e e e e e . 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e f 1 e f 1 e . . e f 1 e f 1 e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
 `,img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. 5 5 5 5 5 . . . . 5 5 5 5 5 . 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 f 1 5 f 1 5 . . 5 f 1 5 f 1 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
+. e e e e e . . . . e e e e e . 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e f 1 e f 1 e . . e f 1 e f 1 e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
 `,img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. 5 5 5 5 5 . . . . 5 5 5 5 5 . 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 f 1 5 f 1 5 . . 5 f 1 5 f 1 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
+. e e e e e . . . . e e e e e . 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e f 1 e f 1 e . . e f 1 e f 1 e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
 `,img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. 5 5 5 5 5 . . . . 5 5 5 5 5 . 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 f 1 5 f 1 5 . . 5 f 1 5 f 1 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
+. e e e e e . . . . e e e e e . 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e f 1 e f 1 e . . e f 1 e f 1 e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
 `,img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. 5 5 5 5 5 . . . . 5 5 5 5 5 . 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 f 1 5 f 1 5 . . 5 f 1 5 f 1 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
+. e e e e e . . . . e e e e e . 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e f 1 e f 1 e . . e f 1 e f 1 e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
 `,img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -925,16 +902,16 @@ function Level_1_enemies () {
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. 5 5 5 5 5 . . . . 5 5 5 5 5 . 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 f 1 5 f 1 5 . . 5 f 1 5 f 1 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
+. e e e e e . . . . e e e e e . 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e f 1 e f 1 e . . e f 1 e f 1 e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
 `,img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -943,15 +920,15 @@ function Level_1_enemies () {
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. 5 5 5 5 5 . . . . 5 5 5 5 5 . 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 f 1 5 f 1 5 . . 5 f 1 5 f 1 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
+. e e e e e . . . . e e e e e . 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e f 1 e f 1 e . . e f 1 e f 1 e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
 `,img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -961,14 +938,14 @@ function Level_1_enemies () {
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. 5 5 5 5 5 . . . . 5 5 5 5 5 . 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 f 1 5 f 1 5 . . 5 f 1 5 f 1 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
+. e e e e e . . . . e e e e e . 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e f 1 e f 1 e . . e f 1 e f 1 e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
 `,img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -979,13 +956,13 @@ function Level_1_enemies () {
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. 5 5 5 5 5 . . . . 5 5 5 5 5 . 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 f 1 5 f 1 5 . . 5 f 1 5 f 1 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
+. e e e e e . . . . e e e e e . 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e f 1 e f 1 e . . e f 1 e f 1 e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
 `,img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -997,12 +974,12 @@ function Level_1_enemies () {
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. 5 5 5 5 5 . . . . 5 5 5 5 5 . 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 f 1 5 f 1 5 . . 5 f 1 5 f 1 5 
+. e e e e e . . . . e e e e e . 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e f 1 e f 1 e . . e f 1 e f 1 e 
+e e e e e e e . . e e e e e e e 
 `,img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -1015,11 +992,11 @@ function Level_1_enemies () {
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. 5 5 5 5 5 . . . . 5 5 5 5 5 . 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
+. e e e e e . . . . e e e e e . 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e f 1 e f 1 e . . e f 1 e f 1 e 
 `,img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -1033,10 +1010,10 @@ function Level_1_enemies () {
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. 5 5 5 5 5 . . . . 5 5 5 5 5 . 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
+. e e e e e . . . . e e e e e . 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
 `,img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -1051,9 +1028,9 @@ function Level_1_enemies () {
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. 5 5 5 5 5 . . . . 5 5 5 5 5 . 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
+. e e e e e . . . . e e e e e . 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
 `,img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -1069,8 +1046,25 @@ function Level_1_enemies () {
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
+. e e e e e . . . . e e e e e . 
+e e e e e e e . . e e e e e e e 
+`,img`
 . . . . . . . . . . . . . . . . 
-. 5 5 5 5 5 . . . . 5 5 5 5 5 . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. e e e e e . . . . e e e e e . 
 `,img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -1094,144 +1088,127 @@ function Level_1_enemies () {
     )
     Tom_and_Jared_2.setPosition(550, 105)
     Tom_and_Jared_3 = sprites.create(img`
-. 5 5 5 5 5 . . . . 5 5 5 5 5 . 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 f 1 5 f 1 5 . . 5 f 1 5 f 1 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
+. e e e e e . . . . e e e e e . 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e f 1 e f 1 e . . e f 1 e f 1 e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
 `, SpriteKind.Enemy)
     animation.runImageAnimation(
     Tom_and_Jared_3,
     [img`
-. 5 5 5 5 5 . . . . 5 5 5 5 5 . 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 f 1 5 f 1 5 . . 5 f 1 5 f 1 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
+. e e e e e . . . . e e e e e . 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e f 1 e f 1 e . . e f 1 e f 1 e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
 `,img`
 . . . . . . . . . . . . . . . . 
-. 5 5 5 5 5 . . . . 5 5 5 5 5 . 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 f 1 5 f 1 5 . . 5 f 1 5 f 1 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-`,img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. 5 5 5 5 5 . . . . 5 5 5 5 5 . 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 f 1 5 f 1 5 . . 5 f 1 5 f 1 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
+. e e e e e . . . . e e e e e . 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e f 1 e f 1 e . . e f 1 e f 1 e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
 `,img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. 5 5 5 5 5 . . . . 5 5 5 5 5 . 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 f 1 5 f 1 5 . . 5 f 1 5 f 1 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
+. e e e e e . . . . e e e e e . 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e f 1 e f 1 e . . e f 1 e f 1 e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
 `,img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. 5 5 5 5 5 . . . . 5 5 5 5 5 . 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 f 1 5 f 1 5 . . 5 f 1 5 f 1 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
+. e e e e e . . . . e e e e e . 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e f 1 e f 1 e . . e f 1 e f 1 e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
 `,img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. 5 5 5 5 5 . . . . 5 5 5 5 5 . 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 f 1 5 f 1 5 . . 5 f 1 5 f 1 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
+. e e e e e . . . . e e e e e . 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e f 1 e f 1 e . . e f 1 e f 1 e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
 `,img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. 5 5 5 5 5 . . . . 5 5 5 5 5 . 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 f 1 5 f 1 5 . . 5 f 1 5 f 1 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
+. e e e e e . . . . e e e e e . 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e f 1 e f 1 e . . e f 1 e f 1 e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
 `,img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -1239,16 +1216,16 @@ function Level_1_enemies () {
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. 5 5 5 5 5 . . . . 5 5 5 5 5 . 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 f 1 5 f 1 5 . . 5 f 1 5 f 1 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
+. e e e e e . . . . e e e e e . 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e f 1 e f 1 e . . e f 1 e f 1 e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
 `,img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -1257,15 +1234,15 @@ function Level_1_enemies () {
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. 5 5 5 5 5 . . . . 5 5 5 5 5 . 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 f 1 5 f 1 5 . . 5 f 1 5 f 1 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
+. e e e e e . . . . e e e e e . 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e f 1 e f 1 e . . e f 1 e f 1 e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
 `,img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -1275,14 +1252,14 @@ function Level_1_enemies () {
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. 5 5 5 5 5 . . . . 5 5 5 5 5 . 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 f 1 5 f 1 5 . . 5 f 1 5 f 1 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
+. e e e e e . . . . e e e e e . 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e f 1 e f 1 e . . e f 1 e f 1 e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
 `,img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -1293,13 +1270,13 @@ function Level_1_enemies () {
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. 5 5 5 5 5 . . . . 5 5 5 5 5 . 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 f 1 5 f 1 5 . . 5 f 1 5 f 1 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
+. e e e e e . . . . e e e e e . 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e f 1 e f 1 e . . e f 1 e f 1 e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
 `,img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -1311,12 +1288,12 @@ function Level_1_enemies () {
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. 5 5 5 5 5 . . . . 5 5 5 5 5 . 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 f 1 5 f 1 5 . . 5 f 1 5 f 1 5 
+. e e e e e . . . . e e e e e . 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e f 1 e f 1 e . . e f 1 e f 1 e 
+e e e e e e e . . e e e e e e e 
 `,img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -1329,11 +1306,11 @@ function Level_1_enemies () {
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. 5 5 5 5 5 . . . . 5 5 5 5 5 . 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
+. e e e e e . . . . e e e e e . 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e f 1 e f 1 e . . e f 1 e f 1 e 
 `,img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -1347,10 +1324,10 @@ function Level_1_enemies () {
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. 5 5 5 5 5 . . . . 5 5 5 5 5 . 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
+. e e e e e . . . . e e e e e . 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
 `,img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -1365,9 +1342,9 @@ function Level_1_enemies () {
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. 5 5 5 5 5 . . . . 5 5 5 5 5 . 
-5 5 5 5 5 5 5 . . 5 5 5 5 5 5 5 
+. e e e e e . . . . e e e e e . 
+e e e e e e e . . e e e e e e e 
+e e e e e e e . . e e e e e e e 
 `,img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -1383,8 +1360,25 @@ function Level_1_enemies () {
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
+. e e e e e . . . . e e e e e . 
+e e e e e e e . . e e e e e e e 
+`,img`
 . . . . . . . . . . . . . . . . 
-. 5 5 5 5 5 . . . . 5 5 5 5 5 . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. e e e e e . . . . e e e e e . 
 `,img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -1406,7 +1400,7 @@ function Level_1_enemies () {
     100,
     true
     )
-    Tom_and_Jared_3.setPosition(600, 75)
+    Tom_and_Jared_3.setPosition(600, 72)
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     game.over(false)
@@ -1433,6 +1427,29 @@ function Call_levels () {
 }
 function Level_2_boosters () {
 	
+}
+function camera_lv_1 () {
+    // Once the game starts, the camera will go at a
+    // consistent pace
+    Camera_lv_1 = sprites.createProjectileFromSide(img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+e e e e e e e e e e e e e e e e 
+`, 75, 0)
+    Camera_lv_1.setPosition(80, 125)
 }
 function start () {
     // Animates main Character to walk
@@ -1579,20 +1596,19 @@ function start () {
 function Level_3 () {
 	
 }
+let Camera_lv_1: Sprite = null
 let Tom_and_Jared_3: Sprite = null
 let Tom_and_Jared_2: Sprite = null
 let Todd_and_Jared_1: Sprite = null
-let projectile: Sprite = null
 let Level = 0
 let Kumba: Sprite = null
+let Camera_lv_2: Sprite = null
 Level_1_splash()
-character()
 Level_1_enemies()
 Level_1()
-camera_start()
+camera_lv_1()
 game.onUpdate(function () {
     die_camera()
-    scene.cameraFollowSprite(projectile)
+    scene.cameraFollowSprite(Camera_lv_1)
     Call_levels()
-    Camera_after_start()
 })
