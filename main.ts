@@ -50,6 +50,26 @@ function die_camera () {
         game.over(false)
     }
 }
+function Level_2_monster () {
+    Lv_2_monster = sprites.create(img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`, SpriteKind.Enemy)
+}
 scene.onOverlapTile(SpriteKind.Player, img`
 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
@@ -70,6 +90,7 @@ scene.onOverlapTile(SpriteKind.Player, img`
 `, function (sprite, location) {
     Level = 2
     camera_lv_2()
+    Level_2_boosters()
 })
 function character_start () {
     // sets sprite
@@ -251,6 +272,26 @@ d d d d d d d d 5 f c c c c f . . . . . . . . . . . . . . . . .
     )
     Kumba.vx = -75
 })
+scene.onOverlapTile(SpriteKind.Player, img`
+f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f 
+f f f f f f f a a f f f f f f f 
+f f f f f 7 a 5 5 5 5 5 f f f f 
+f f f f 7 a 5 f 4 4 4 f 5 f f f 
+f f f b 7 a 5 4 b b b 4 f f f f 
+f f 4 b 7 a 5 b 7 7 7 b 4 f f f 
+f f 4 b 7 a 5 f f a a 7 b 4 f f 
+f f 4 b 7 a a f f 5 a 7 b 4 f f 
+f f f 4 b 7 7 7 b 5 a 7 b 4 f f 
+f f f f 4 b b b 4 5 a 7 b f f f 
+f f f 5 f 4 4 4 f 5 a 7 f f f f 
+f f f f 5 5 5 5 5 a 7 f f f f f 
+f f f f f f f a a f f f f f f f 
+f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f 
+`, function (sprite, location) {
+    Level = 3
+})
 controller.left.onEvent(ControllerButtonEvent.Released, function () {
     Kumba.vx = 0
 })
@@ -378,29 +419,29 @@ f f f f f f f f f f f f f f f f
 f f f f f f f f f f f f f f f f 
 f f f f f f f f f f f f f f f f 
 f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+b b 1 1 1 1 b b b b 1 1 1 1 b b 
+b b b b b b 1 1 1 1 b b b b b b 
+b b 1 1 1 1 b b b b 1 1 1 1 b b 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
 `, false)
     scene.setTile(5, img`
 f f f f f f f f f f f f f f f f 
 f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f 
+f f f f f f f a a f f f f f f f 
+f f f f f 7 a 5 5 5 5 5 f f f f 
+f f f f 7 a 5 f 4 4 4 f 5 f f f 
+f f f b 7 a 5 4 b b b 4 f f f f 
+f f 4 b 7 a 5 b 7 7 7 b 4 f f f 
+f f 4 b 7 a 5 f f a a 7 b 4 f f 
+f f 4 b 7 a a f f 5 a 7 b 4 f f 
+f f f 4 b 7 7 7 b 5 a 7 b 4 f f 
+f f f f 4 b b b 4 5 a 7 b f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+b b 1 1 1 1 b b b b 1 1 1 1 b b 
+b b b b b b 1 1 1 1 b b b b b b 
+b b 1 1 1 1 b b b b 1 1 1 1 b b 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
 `, false)
     scene.setTile(11, img`
 f f f f f f f f f f f f f f f f 
@@ -422,14 +463,17 @@ f f f f f f f f f f f f f f f f
 `, false)
     scene.cameraFollowSprite(Camera_lv_2)
 }
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
+    Kumba.ay += -100
+})
 function Level_1 () {
     // Sets tile map
     scene.setTileMap(img`
-3 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 9 7 7 7 7 7 7 
-5 9 7 7 7 9 7 7 7 7 7 7 9 7 7 7 7 7 7 7 9 7 7 7 9 7 7 7 7 7 7 7 7 7 7 7 7 7 9 7 9 7 7 7 7 7 9 7 b 7 
-4 7 4 7 7 7 7 7 9 7 4 7 7 7 9 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 9 7 7 9 7 7 7 7 7 7 7 7 9 7 7 7 7 f e 
-6 7 6 7 7 7 7 7 7 7 6 7 7 7 7 7 7 7 7 7 9 7 7 7 7 7 9 7 7 7 7 7 7 7 7 7 7 7 7 9 7 7 7 7 7 7 7 7 e e 
-6 7 6 7 7 7 7 7 7 7 6 7 7 7 7 7 4 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 9 7 7 7 7 7 7 7 7 7 7 7 9 7 e e e 
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 9 7 7 7 7 7 7 
+5 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 7 7 7 7 9 7 7 7 9 7 7 7 7 7 7 7 7 7 7 7 7 7 9 7 9 7 7 7 7 7 9 7 7 7 
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 9 7 7 9 7 7 7 7 7 7 7 7 9 7 7 7 7 7 e 
+4 7 4 7 7 7 7 7 7 7 4 7 7 7 7 7 7 7 7 7 9 7 7 7 7 7 9 7 7 7 7 7 7 7 7 7 7 7 7 9 7 7 7 7 7 7 7 b e e 
+6 7 6 7 7 7 7 7 7 7 6 7 7 7 7 7 4 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 9 7 7 7 7 7 7 7 7 7 7 7 9 f e e e 
 e e e e e e e e 7 7 6 7 7 7 7 7 6 7 7 7 7 7 7 7 7 7 7 7 7 7 e 7 7 7 7 7 e e e 7 7 7 e 7 7 7 e e e e 
 e e e e e e e e e e e e 7 7 7 7 6 7 7 e e e e e e e e e e e e e 7 7 7 e e e e e 7 e e e 7 e e e e e 
 e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e 
@@ -1714,7 +1758,25 @@ function Call_levels () {
     }
 }
 function Level_2_boosters () {
-	
+    Trampoline = sprites.create(img`
+. . . . . . . 7 7 . . . . . . . 
+. . . . . . 7 7 7 7 . . . . . . 
+. . . . . 7 7 7 7 7 7 . . . . . 
+. . . . 7 7 7 7 7 7 7 7 . . . . 
+. . . 7 7 7 7 7 7 7 7 7 7 . . . 
+. . 7 7 7 7 7 7 7 7 7 7 7 7 . . 
+. 7 7 7 7 7 7 7 7 7 7 7 7 7 7 . 
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+. . . . . 7 7 7 7 7 7 . . . . . 
+. . . . . 7 7 7 7 7 7 . . . . . 
+. . . . . 7 7 7 7 7 7 . . . . . 
+. . . . . 7 7 7 7 7 7 . . . . . 
+. . . . . 7 7 7 7 7 7 . . . . . 
+. . . . . 7 7 7 7 7 7 . . . . . 
+. . . . . 7 7 7 7 7 7 . . . . . 
+. . . . . 7 7 7 7 7 7 . . . . . 
+`, SpriteKind.Food)
+    Trampoline.setPosition(280, 104)
 }
 function camera_lv_1 () {
     // Once the game starts, the camera will go at a
@@ -1746,10 +1808,12 @@ function Level_3 () {
 	
 }
 let Camera_lv_1: Sprite = null
+let Trampoline: Sprite = null
 let Tom_and_Jared_3: Sprite = null
 let Tom_and_Jared_2: Sprite = null
 let Todd_and_Jared_1: Sprite = null
 let Level = 0
+let Lv_2_monster: Sprite = null
 let Kumba: Sprite = null
 let Camera_lv_2: Sprite = null
 character_start()
