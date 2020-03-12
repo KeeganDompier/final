@@ -19,26 +19,6 @@ namespace myTiles {
 . . . . . . . . . . . . . . . . 
 `
 }
-function Level_2_monster () {
-    Lv_2_monster = sprites.create(img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`, SpriteKind.Enemy)
-}
 function camera_lv_2 () {
     Camera_lv_2 = sprites.createProjectileFromSide(img`
 . . . . . . . . . . . . . . . . 
@@ -91,6 +71,7 @@ scene.onOverlapTile(SpriteKind.Player, img`
     Level = 2
     camera_lv_2()
     Level_2_boosters()
+    Level_2_monsters()
 })
 function character_start () {
     // sets sprite
@@ -1804,9 +1785,50 @@ e e e e e e e e e e e e e e e e
 function start () {
     controller.moveSprite(Kumba, 75, 0)
 }
+function Level_2_monsters () {
+    Lv_2_monster = sprites.create(img`
+. . . . . . . . . . 1 . . . . . . . . . . . 1 . . . . . . . . . . 
+. . . . . . . . . 1 1 1 . . . . . . . . . 1 1 1 . . . . . . . . . 
+. . . . . . . . 1 1 1 1 1 . . . . . . . 1 1 1 1 1 . . . . . . . . 
+. . . . . . . 1 1 1 1 1 1 1 . . . . . 1 1 1 1 1 1 1 . . . . . . . 
+. . . . . . 1 1 1 1 1 1 1 1 1 . . . 1 1 1 1 1 1 1 1 1 . . . . . . 
+. . . . . 1 1 1 1 1 1 1 1 1 1 1 . 1 1 1 1 1 1 1 1 1 1 1 . . . . . 
+. . . . 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 . . . . 
+. . . 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 . . . 
+. . 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 . . 
+. 1 c c c c c c c c c c c c c c c c c c c c c c c c c c c c c 1 . 
+. 1 c c c c c c c c c c c c c c c c c c c c c c c c c c c c c 1 . 
+. 1 c c 1 1 1 1 1 c c c c c c c c c c c c c c c 1 1 1 1 1 c c 1 . 
+. 1 c c 1 1 1 1 1 c c c c c c c c c c c c c c c 1 1 1 1 1 c c 1 . 
+. 1 c c 1 1 f 1 1 c c c c c c c c c c c c c c c 1 1 f 1 1 c c 1 . 
+. 1 c c 1 1 1 1 1 c c c c c c c c c c c c c c c 1 1 1 1 1 c c 1 . 
+. 1 c c 1 1 1 1 1 c c c c c c f f f c c c c c c 1 1 1 1 1 c c 1 . 
+1 c c c c c c c c c c c c c c f 1 f c c c c c c c c c c c c c c 1 
+1 c c c c c c c c c c c c c c f f f c c c c c c c c c c c c c c 1 
+. 1 c c c c c c c c c c c c c c c c c c c c c c c c c c c c c 1 . 
+. 1 c c c f c c c c c c c c c c c c c c c c c c c c c f c c c 1 . 
+. 1 c c c c f c c c c c c c c c c c c c c c c c c c f c c c c 1 . 
+. 1 c c c c c f f f f f f f f f f f f f f f f f f f c c c c c 1 . 
+. 1 c c c c c c c c c c c c c c c c c c c c c c c c c c c c c 1 . 
+. 1 c c c c c c c c c c c c c c c c c c c c c c c c c c c c c 1 . 
+. . 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 . . 
+. . . 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 . . . 
+. . . . 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 . . . . 
+. . . . . 1 1 1 1 1 1 1 1 1 1 1 . 1 1 1 1 1 1 1 1 1 1 1 . . . . . 
+. . . . . . 1 1 1 1 1 1 1 1 1 . . . 1 1 1 1 1 1 1 1 1 . . . . . . 
+. . . . . . . 1 1 1 1 1 1 1 . . . . . 1 1 1 1 1 1 1 . . . . . . . 
+. . . . . . . . 1 1 1 1 1 . . . . . . . 1 1 1 1 1 . . . . . . . . 
+. . . . . . . . . 1 1 1 . . . . . . . . . 1 1 1 . . . . . . . . . 
+. . . . . . . . . . 1 . . . . . . . . . . . 1 . . . . . . . . . . 
+`, SpriteKind.Enemy)
+    Lv_2_monster.setFlag(SpriteFlag.StayInScreen, true)
+    Lv_2_monster.setPosition(1000, 104)
+    Lv_2_monster.follow(Kumba, 77)
+}
 function Level_3 () {
 	
 }
+let Lv_2_monster: Sprite = null
 let Camera_lv_1: Sprite = null
 let Trampoline: Sprite = null
 let Tom_and_Jared_3: Sprite = null
@@ -1815,7 +1837,6 @@ let Todd_and_Jared_1: Sprite = null
 let Level = 0
 let Kumba: Sprite = null
 let Camera_lv_2: Sprite = null
-let Lv_2_monster: Sprite = null
 character_start()
 Level_1_splash()
 Level_1_enemies()
