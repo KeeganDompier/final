@@ -19,6 +19,26 @@ namespace myTiles {
 . . . . . . . . . . . . . . . . 
 `
 }
+function Level_2_monster () {
+    Lv_2_monster = sprites.create(img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`, SpriteKind.Enemy)
+}
 function camera_lv_2 () {
     Camera_lv_2 = sprites.createProjectileFromSide(img`
 . . . . . . . . . . . . . . . . 
@@ -42,33 +62,13 @@ e e e e e e e e e e e e e e e e
 }
 function Level_1_splash () {
     game.splash("Level 1, travel into the future with the portal while avoiding monsters or moving too slowly")
-    game.splash("use the arrows to move left and right, and Down arrow to stop")
+    game.splash("use the arrows to move left and right, and space to jump")
 }
 function die_camera () {
     // If character goes off screen, then he dies
     if (Kumba.x <= scene.cameraLeft() || Kumba.x >= scene.cameraLeft() + 160) {
         game.over(false)
     }
-}
-function Level_2_monster () {
-    Lv_2_monster = sprites.create(img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`, SpriteKind.Enemy)
 }
 scene.onOverlapTile(SpriteKind.Player, img`
 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
@@ -408,23 +408,23 @@ f f f f f f f f f f f f f f f f
 f f f f f f f f f f f f f f f f 
 `, false)
     scene.setTile(3, img`
-f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f 
-f f f f f f f f f f f f f f f f 
 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
-b b 1 1 1 1 b b b b 1 1 1 1 b b 
-b b b b b b 1 1 1 1 b b b b b b 
-b b 1 1 1 1 b b b b 1 1 1 1 b b 
+b 1 b b b b b b b b b b b b 1 b 
+b b 1 b b b b b b b b b b 1 b b 
+b b b 1 b b b b b b b b 1 b b b 
+b b b b 1 b b b b b b 1 b b b b 
+b b b b b 1 b b b b 1 b b b b b 
+b b b b b b 1 b b 1 b b b b b b 
+b b b b b b b 1 1 b b b b b b b 
+b b b b b b b 1 1 b b b b b b b 
+b b b b b b 1 b b 1 b b b b b b 
+b b b b b 1 b b b b 1 b b b b b 
+b b b b 1 b b b b b b 1 b b b b 
+b b b 1 b b b b b b b b 1 b b b 
+b b 1 b b b b b b b b b b 1 b b 
+b 1 b b b b b b b b b b b b 1 b 
 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
-`, false)
+`, true)
     scene.setTile(5, img`
 f f f f f f f f f f f f f f f f 
 f f f f f f f f f f f f f f f f 
@@ -437,11 +437,11 @@ f f 4 b 7 a 5 f f a a 7 b 4 f f
 f f 4 b 7 a a f f 5 a 7 b 4 f f 
 f f f 4 b 7 7 7 b 5 a 7 b 4 f f 
 f f f f 4 b b b 4 5 a 7 b f f f 
-1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
-b b 1 1 1 1 b b b b 1 1 1 1 b b 
-b b b b b b 1 1 1 1 b b b b b b 
-b b 1 1 1 1 b b b b 1 1 1 1 b b 
-1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f 5 f 4 4 4 f 5 a 7 f f f f 
+f f f f 5 5 5 5 5 a 7 f f f f f 
+f f f f f f f a a f f f f f f f 
+f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f 
 `, false)
     scene.setTile(11, img`
 f f f f f f f f f f f f f f f f 
@@ -464,14 +464,14 @@ f f f f f f f f f f f f f f f f
     scene.cameraFollowSprite(Camera_lv_2)
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
-    Kumba.ay += -100
+    Kumba.vy += -120
 })
 function Level_1 () {
     // Sets tile map
     scene.setTileMap(img`
 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 9 7 7 7 7 7 7 
-5 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 7 7 7 7 9 7 7 7 9 7 7 7 7 7 7 7 7 7 7 7 7 7 9 7 9 7 7 7 7 7 9 7 7 7 
-7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 9 7 7 9 7 7 7 7 7 7 7 7 9 7 7 7 7 7 e 
+5 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 9 7 7 7 9 7 7 7 7 7 7 7 7 7 7 7 7 7 9 7 9 7 7 7 7 7 9 7 7 7 
+3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 9 7 7 9 7 7 7 7 7 7 7 7 9 7 7 7 7 7 e 
 4 7 4 7 7 7 7 7 7 7 4 7 7 7 7 7 7 7 7 7 9 7 7 7 7 7 9 7 7 7 7 7 7 7 7 7 7 7 7 9 7 7 7 7 7 7 7 b e e 
 6 7 6 7 7 7 7 7 7 7 6 7 7 7 7 7 4 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 9 7 7 7 7 7 7 7 7 7 7 7 9 f e e e 
 e e e e e e e e 7 7 6 7 7 7 7 7 6 7 7 7 7 7 7 7 7 7 7 7 7 7 e 7 7 7 7 7 e e e 7 7 7 e 7 7 7 e e e e 
@@ -1813,9 +1813,9 @@ let Tom_and_Jared_3: Sprite = null
 let Tom_and_Jared_2: Sprite = null
 let Todd_and_Jared_1: Sprite = null
 let Level = 0
-let Lv_2_monster: Sprite = null
 let Kumba: Sprite = null
 let Camera_lv_2: Sprite = null
+let Lv_2_monster: Sprite = null
 character_start()
 Level_1_splash()
 Level_1_enemies()
