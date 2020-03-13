@@ -20,7 +20,7 @@ namespace myTiles {
 `
 }
 function camera_lv_2 () {
-    Camera_lv_2 = sprites.createProjectileFromSide(img`
+    Camera_lv_42 = sprites.createProjectileFromSide(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -37,12 +37,95 @@ function camera_lv_2 () {
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 e e e e e e e e e e e e e e e e 
-`, -75, 0)
-    Camera_lv_2.setPosition(750, 125)
+`, -150, 0)
+    Camera_lv_42.setPosition(750, 125)
 }
 function Level_1_splash () {
     game.splash("Level 1, travel into the future with the portal while avoiding monsters or moving too slowly")
     game.splash("use the arrows to move left and right, and space to jump")
+    game.splash("Join FBLA")
+    game.splash("Join FBLA")
+    game.splash("Join FBLA")
+    game.splash("F-Is for future")
+    game.splash("B-Is for business")
+    game.splash("L-Is for Leaders")
+    game.splash("A-Is for America")
+    game.splash("Learn how each level works as you progress through the game")
+}
+function Level_4_monsters () {
+    list = [img`
+. . . . . . . . . . 1 . . . . . . . . . . . 1 . . . . . . . . . . 
+. . . . . . . . . 1 1 1 . . . . . . . . . 1 1 1 . . . . . . . . . 
+. . . . . . . . 1 1 1 1 1 . . . . . . . 1 1 1 1 1 . . . . . . . . 
+. . . . . . . 1 1 1 1 1 1 1 . . . . . 1 1 1 1 1 1 1 . . . . . . . 
+. . . . . . 1 1 1 1 1 1 1 1 1 . . . 1 1 1 1 1 1 1 1 1 . . . . . . 
+. . . . . 1 1 1 1 1 1 1 1 1 1 1 . 1 1 1 1 1 1 1 1 1 1 1 . . . . . 
+. . . . 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 . . . . 
+. . . 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 . . . 
+. . 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 . . 
+. 1 c c c c c c c c c c c c c c c c c c c c c c c c c c c c c 1 . 
+. 1 c c c c c c c c c c c c c c c c c c c c c c c c c c c c c 1 . 
+. 1 c c 1 1 1 1 1 c c c c c c c c c c c c c c c 1 1 1 1 1 c c 1 . 
+. 1 c c 1 1 1 1 1 c c c c c c c c c c c c c c c 1 1 1 1 1 c c 1 . 
+. 1 c c 1 1 f 1 1 c c c c c c c c c c c c c c c 1 1 f 1 1 c c 1 . 
+. 1 c c 1 1 1 1 1 c c c c c c c c c c c c c c c 1 1 1 1 1 c c 1 . 
+. 1 c c 1 1 1 1 1 c c c c c c f f f c c c c c c 1 1 1 1 1 c c 1 . 
+1 c c c c c c c c c c c c c c f 1 f c c c c c c c c c c c c c c 1 
+1 c c c c c c c c c c c c c c f f f c c c c c c c c c c c c c c 1 
+. 1 c c c c c c c c c c c c c c c c c c c c c c c c c c c c c 1 . 
+. 1 c c c f c c c c c c c c c c c c c c c c c c c c c f c c c 1 . 
+. 1 c c c c f c c c c c c c c c c c c c c c c c c c f c c c c 1 . 
+. 1 c c c c c f f f f f f f f f f f f f f f f f f f c c c c c 1 . 
+. 1 c c c c c c c c c c c c c c c c c c c c c c c c c c c c c 1 . 
+. 1 c c c c c c c c c c c c c c c c c c c c c c c c c c c c c 1 . 
+. . 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 . . 
+. . . 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 . . . 
+. . . . 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 . . . . 
+. . . . . 1 1 1 1 1 1 1 1 1 1 1 . 1 1 1 1 1 1 1 1 1 1 1 . . . . . 
+. . . . . . 1 1 1 1 1 1 1 1 1 . . . 1 1 1 1 1 1 1 1 1 . . . . . . 
+. . . . . . . 1 1 1 1 1 1 1 . . . . . 1 1 1 1 1 1 1 . . . . . . . 
+. . . . . . . . 1 1 1 1 1 . . . . . . . 1 1 1 1 1 . . . . . . . . 
+. . . . . . . . . 1 1 1 . . . . . . . . . 1 1 1 . . . . . . . . . 
+. . . . . . . . . . 1 . . . . . . . . . . . 1 . . . . . . . . . . 
+`, img`
+. . . . . . . . . . c . . . . . . . . . . . c . . . . . . . . . . 
+. . . . . . . . . c c c . . . . . . . . . c c c . . . . . . . . . 
+. . . . . . . . c c c c c . . . . . . . c c c c c . . . . . . . . 
+. . . . . . . c c c c c c c . . . . . c c c c c c c . . . . . . . 
+. . . . . . c c c c c c c c c . . . c c c c c c c c c . . . . . . 
+. . . . . c c c c c c c c c c c . c c c c c c c c c c c . . . . . 
+. . . . c c c c c c c c c c c c c c c c c c c c c c c c c . . . . 
+. . . c c c c c c c c c c c c c c c c c c c c c c c c c c c . . . 
+. . c c c c c c c c c c c c c c c c c c c c c c c c c c c c c . . 
+. c 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 c . 
+. c 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 c . 
+. c 1 1 c c c c c 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 c c c c c 1 1 c . 
+. c 1 1 c c c c c 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 c c c c c 1 1 c . 
+. c 1 1 c c f c c 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 c c f c c 1 1 c . 
+. c 1 1 c c c c c 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 c c c c c 1 1 c . 
+. c 1 1 c c c c c 1 1 1 1 1 1 f f f 1 1 1 1 1 1 c c c c c 1 1 c . 
+c 1 1 1 1 1 1 1 1 1 1 1 1 1 1 f c f 1 1 1 1 1 1 1 1 1 1 1 1 1 1 c 
+c 1 1 1 1 1 1 1 1 1 1 1 1 1 1 f f f 1 1 1 1 1 1 1 1 1 1 1 1 1 1 c 
+. c 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 c . 
+. c 1 1 1 f 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 f 1 1 1 c . 
+. c 1 1 1 1 f 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 f 1 1 1 1 c . 
+. c 1 1 1 1 1 f f f f f f f f f f f f f f f f f f f 1 1 1 1 1 c . 
+. c 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 c . 
+. c 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 c . 
+. . c c c c c c c c c c c c c c c c c c c c c c c c c c c c c . . 
+. . . c c c c c c c c c c c c c c c c c c c c c c c c c c c . . . 
+. . . . c c c c c c c c c c c c c c c c c c c c c c c c c . . . . 
+. . . . . c c c c c c c c c c c . c c c c c c c c c c c . . . . . 
+. . . . . . c c c c c c c c c . . . c c c c c c c c c . . . . . . 
+. . . . . . . c c c c c c c . . . . . c c c c c c c . . . . . . . 
+. . . . . . . . c c c c c . . . . . . . c c c c c . . . . . . . . 
+. . . . . . . . . c c c . . . . . . . . . c c c . . . . . . . . . 
+. . . . . . . . . . c . . . . . . . . . . . c . . . . . . . . . . 
+`]
+    Lv_2_monster = sprites.create(list[Math.randomRange(0, 1)], SpriteKind.Enemy)
+    Lv_2_monster.setPosition(Kumba.x, Kumba.y - 40)
+    Lv_2_monster_bottom = sprites.create(list[Math.randomRange(0, 1)], SpriteKind.Enemy)
+    Lv_2_monster_bottom.setPosition(Kumba.x, Kumba.y + 50)
 }
 function die_camera () {
     // If character goes off screen, then he dies
@@ -70,9 +153,28 @@ scene.onOverlapTile(SpriteKind.Player, img`
 `, function (sprite, location) {
     Level = 2
     camera_lv_2()
-    Level_2_boosters()
-    Level_2_monsters()
 })
+function Level_3_trampoline () {
+    Trampoline = sprites.create(img`
+. . . . . . . 7 7 . . . . . . . 
+. . . . . . 7 7 7 7 . . . . . . 
+. . . . . 7 7 7 7 7 7 . . . . . 
+. . . . 7 7 7 7 7 7 7 7 . . . . 
+. . . 7 7 7 7 7 7 7 7 7 7 . . . 
+. . 7 7 7 7 7 7 7 7 7 7 7 7 . . 
+. 7 7 7 7 7 7 7 7 7 7 7 7 7 7 . 
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+. . . . . 7 7 7 7 7 7 . . . . . 
+. . . . . 7 7 7 7 7 7 . . . . . 
+. . . . . 7 7 7 7 7 7 . . . . . 
+. . . . . 7 7 7 7 7 7 . . . . . 
+. . . . . 7 7 7 7 7 7 . . . . . 
+. . . . . 7 7 7 7 7 7 . . . . . 
+. . . . . 7 7 7 7 7 7 . . . . . 
+. . . . . 7 7 7 7 7 7 . . . . . 
+`, SpriteKind.Food)
+    Trampoline.setPosition(280, 90)
+}
 function character_start () {
     // sets sprite
     Kumba = sprites.create(img`
@@ -254,6 +356,26 @@ d d d d d d d d 5 f c c c c f . . . . . . . . . . . . . . . . .
     Kumba.vx = -75
 })
 scene.onOverlapTile(SpriteKind.Player, img`
+1 f f f f f f f f f f f f f f f 
+1 f 8 8 8 8 8 2 2 2 2 2 2 2 2 f 
+1 f 8 8 8 8 8 1 1 1 1 1 1 1 1 f 
+1 f 8 8 8 8 8 2 2 2 2 2 2 2 2 f 
+1 f 8 8 8 8 8 1 1 1 1 1 1 1 1 f 
+1 f 2 2 2 2 2 2 2 2 2 2 2 2 2 f 
+1 f 1 1 1 1 1 1 1 1 1 1 1 1 1 f 
+1 f 2 2 2 2 2 2 2 2 2 2 2 2 2 f 
+1 f f f f f f f f f f f f f f f 
+1 f 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 f 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 f 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 f 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 f 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 f 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 f 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+`, function (sprite, location) {
+    game.over(true)
+})
+scene.onOverlapTile(SpriteKind.Player, img`
 f f f f f f f f f f f f f f f f 
 f f f f f f f f f f f f f f f f 
 f f f f f f f a a f f f f f f f 
@@ -272,6 +394,7 @@ f f f f f f f f f f f f f f f f
 f f f f f f f f f f f f f f f f 
 `, function (sprite, location) {
     Level = 3
+    Camera_lv_3()
 })
 controller.left.onEvent(ControllerButtonEvent.Released, function () {
     Kumba.vx = 0
@@ -388,24 +511,6 @@ f f f f f f f f f f f f f f f f
 f f f f f f f f f f f f f f f f 
 f f f f f f f f f f f f f f f f 
 `, false)
-    scene.setTile(3, img`
-1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
-b 1 b b b b b b b b b b b b 1 b 
-b b 1 b b b b b b b b b b 1 b b 
-b b b 1 b b b b b b b b 1 b b b 
-b b b b 1 b b b b b b 1 b b b b 
-b b b b b 1 b b b b 1 b b b b b 
-b b b b b b 1 b b 1 b b b b b b 
-b b b b b b b 1 1 b b b b b b b 
-b b b b b b b 1 1 b b b b b b b 
-b b b b b b 1 b b 1 b b b b b b 
-b b b b b 1 b b b b 1 b b b b b 
-b b b b 1 b b b b b b 1 b b b b 
-b b b 1 b b b b b b b b 1 b b b 
-b b 1 b b b b b b b b b b 1 b b 
-b 1 b b b b b b b b b b b b 1 b 
-1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
-`, true)
     scene.setTile(5, img`
 f f f f f f f f f f f f f f f f 
 f f f f f f f f f f f f f f f f 
@@ -442,20 +547,39 @@ f f f f f f f f f f f f f f f f
 f f f f f f f f f f f f f f f f 
 f f f f f f f f f f f f f f f f 
 `, false)
-    scene.cameraFollowSprite(Camera_lv_2)
+    scene.setTile(3, img`
+f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f 
+`, false)
+    scene.cameraFollowSprite(Camera_lv_42)
+    controller.moveSprite(Kumba, 150, 0)
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
-    Kumba.vy += -120
+    Kumba.vy += -1000
 })
 function Level_1 () {
     // Sets tile map
     scene.setTileMap(img`
-7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 9 7 7 7 7 7 7 
-5 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 9 7 7 7 9 7 7 7 7 7 7 7 7 7 7 7 7 7 9 7 9 7 7 7 7 7 9 7 7 7 
-3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 9 7 7 9 7 7 7 7 7 7 7 7 9 7 7 7 7 7 e 
-4 7 4 7 7 7 7 7 7 7 4 7 7 7 7 7 7 7 7 7 9 7 7 7 7 7 9 7 7 7 7 7 7 7 7 7 7 7 7 9 7 7 7 7 7 7 7 b e e 
-6 7 6 7 7 7 7 7 7 7 6 7 7 7 7 7 4 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 9 7 7 7 7 7 7 7 7 7 7 7 9 f e e e 
-e e e e e e e e 7 7 6 7 7 7 7 7 6 7 7 7 7 7 7 7 7 7 7 7 7 7 e 7 7 7 7 7 e e e 7 7 7 e 7 7 7 e e e e 
+7 7 7 9 7 7 7 7 9 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 9 7 7 7 7 7 7 
+7 9 7 7 7 7 7 7 7 7 7 7 7 9 7 7 7 7 7 7 9 7 7 7 9 7 7 7 7 7 7 7 7 7 7 7 7 7 9 7 9 7 7 7 7 7 9 7 7 7 
+7 7 7 7 9 7 7 7 7 7 9 7 7 7 7 7 9 7 7 7 7 7 7 7 7 7 7 7 7 7 7 9 7 7 9 7 7 7 7 7 7 7 7 9 7 7 7 7 7 e 
+4 7 4 7 7 7 7 9 7 7 4 7 7 7 7 7 7 7 7 3 3 3 3 3 3 7 9 3 3 3 7 7 7 7 3 3 3 3 3 3 3 3 3 7 7 7 7 7 e e 
+6 7 6 5 7 7 7 7 7 7 6 7 7 7 7 7 4 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 9 7 7 7 7 7 7 7 7 7 3 7 9 f e e e 
+e e e e e e e e 7 7 6 7 7 7 7 7 6 7 7 7 7 7 e 7 7 7 7 7 7 7 e 7 7 7 7 7 e e e 7 7 7 e 7 7 7 e e e e 
 e e e e e e e e e e e e 7 7 7 7 6 7 7 e e e e e e e e e e e e e 7 7 7 e e e e e 7 e e e 7 e e e e e 
 e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e 
 `)
@@ -567,24 +691,6 @@ e e e e e e e e e e e e e f e e
 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
 `, false)
-    scene.setTile(3, img`
-9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
-9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
-9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
-9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
-9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
-9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
-9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
-9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
-9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
-9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
-9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
-9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
-9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
-9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
-9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
-9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
-`, false)
     scene.setTile(5, img`
 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
@@ -621,13 +727,198 @@ e e e e e e e e e e e e e f e e
 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
 `, false)
+    scene.setTile(3, img`
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+`, false)
     Level = 1
+}
+function Camera_lv_3 () {
+    camera_lv_3 = sprites.createProjectileFromSide(img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+e e e e e e e e e e e e e e e e 
+`, 75, 0)
+    camera_lv_3.setPosition(80, 125)
 }
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     jump()
 })
 function Level_4 () {
-	
+    scene.cameraFollowSprite(Camera_lv_42)
+    Trampoline.destroy()
+    scene.setTile(14, img`
+f 1 1 1 f 1 1 f f 1 1 f 1 1 1 f 
+f f f f f f f f f f f f f f f f 
+1 f f 1 f 1 f f f f 1 f 1 f f 1 
+f f f f f f f f f f f f f f f f 
+1 1 f 1 f f 1 f f 1 f f 1 f 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 f f 1 f f f f 1 f f 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 f f 1 1 f f 1 1 f f 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 f 1 f f 1 f f 1 f f 1 f 1 1 
+f f f f f f f f f f f f f f f f 
+1 f 1 f f f 1 f f 1 f f f 1 f 1 
+f f f f f f f f f f f f f f f f 
+f f 1 1 f 1 f f f f 1 f 1 1 f f 
+f f f f f f f f f f f f f f f f 
+`, true)
+    scene.setTile(3, img`
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+`, false)
+    scene.setTile(9, img`
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+`, false)
+    scene.setTile(6, img`
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+`, false)
+    scene.setTile(7, img`
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+`, false)
+    scene.setTile(5, img`
+1 f f f f f f f f f f f f f f f 
+1 f 8 8 8 8 8 2 2 2 2 2 2 2 2 f 
+1 f 8 8 8 8 8 1 1 1 1 1 1 1 1 f 
+1 f 8 8 8 8 8 2 2 2 2 2 2 2 2 f 
+1 f 8 8 8 8 8 1 1 1 1 1 1 1 1 f 
+1 f 2 2 2 2 2 2 2 2 2 2 2 2 2 f 
+1 f 1 1 1 1 1 1 1 1 1 1 1 1 1 f 
+1 f 2 2 2 2 2 2 2 2 2 2 2 2 2 f 
+1 f f f f f f f f f f f f f f f 
+1 f 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 f 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 f 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 f 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 f 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 f 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 f 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+`, false)
+    scene.setTile(4, img`
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+`, false)
+    scene.setTile(15, img`
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+`, false)
+    Level_4_monsters()
 }
 function Level_1_enemies () {
     Todd_and_Jared_1 = sprites.create(img`
@@ -1727,6 +2018,27 @@ function jump () {
 controller.right.onEvent(ControllerButtonEvent.Released, function () {
     Kumba.vx = 0
 })
+scene.onOverlapTile(SpriteKind.Player, img`
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f a a f f f f f f f 
+1 1 1 1 1 7 a 5 5 5 5 5 1 1 1 1 
+f f f f 7 a 5 f 4 4 4 f 5 f f f 
+1 1 1 b 7 a 5 4 b b b 4 1 1 1 1 
+f f 4 b 7 a 5 b 7 7 7 b 4 f f f 
+1 1 4 b 7 a 5 f f a a 7 b 4 1 1 
+f f 4 b 7 a a f f 5 a 7 b 4 f f 
+1 1 1 4 b 7 7 7 b 5 a 7 b 4 1 1 
+f f f f 4 b b b 4 5 a 7 b f f f 
+1 1 1 5 1 4 4 4 1 5 a 7 1 1 1 1 
+f f f f 5 5 5 5 5 a 7 f f f f f 
+1 1 1 1 1 1 1 a a 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+`, function (sprite, location) {
+    Level = 4
+    Camera_lv_4()
+})
 function Call_levels () {
     if (Level == 2) {
         Level_2()
@@ -1738,26 +2050,26 @@ function Call_levels () {
         Level_4()
     }
 }
-function Level_2_boosters () {
-    Trampoline = sprites.create(img`
-. . . . . . . 7 7 . . . . . . . 
-. . . . . . 7 7 7 7 . . . . . . 
-. . . . . 7 7 7 7 7 7 . . . . . 
-. . . . 7 7 7 7 7 7 7 7 . . . . 
-. . . 7 7 7 7 7 7 7 7 7 7 . . . 
-. . 7 7 7 7 7 7 7 7 7 7 7 7 . . 
-. 7 7 7 7 7 7 7 7 7 7 7 7 7 7 . 
-7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-. . . . . 7 7 7 7 7 7 . . . . . 
-. . . . . 7 7 7 7 7 7 . . . . . 
-. . . . . 7 7 7 7 7 7 . . . . . 
-. . . . . 7 7 7 7 7 7 . . . . . 
-. . . . . 7 7 7 7 7 7 . . . . . 
-. . . . . 7 7 7 7 7 7 . . . . . 
-. . . . . 7 7 7 7 7 7 . . . . . 
-. . . . . 7 7 7 7 7 7 . . . . . 
-`, SpriteKind.Food)
-    Trampoline.setPosition(280, 104)
+function Camera_lv_4 () {
+    Camera_lv_42 = sprites.createProjectileFromSide(img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+e e e e e e e e e e e e e e e e 
+`, -75, 0)
+    Camera_lv_42.setPosition(750, 125)
 }
 function camera_lv_1 () {
     // Once the game starts, the camera will go at a
@@ -1785,58 +2097,167 @@ e e e e e e e e e e e e e e e e
 function start () {
     controller.moveSprite(Kumba, 75, 0)
 }
-function Level_2_monsters () {
-    Lv_2_monster = sprites.create(img`
-. . . . . . . . . . 1 . . . . . . . . . . . 1 . . . . . . . . . . 
-. . . . . . . . . 1 1 1 . . . . . . . . . 1 1 1 . . . . . . . . . 
-. . . . . . . . 1 1 1 1 1 . . . . . . . 1 1 1 1 1 . . . . . . . . 
-. . . . . . . 1 1 1 1 1 1 1 . . . . . 1 1 1 1 1 1 1 . . . . . . . 
-. . . . . . 1 1 1 1 1 1 1 1 1 . . . 1 1 1 1 1 1 1 1 1 . . . . . . 
-. . . . . 1 1 1 1 1 1 1 1 1 1 1 . 1 1 1 1 1 1 1 1 1 1 1 . . . . . 
-. . . . 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 . . . . 
-. . . 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 . . . 
-. . 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 . . 
-. 1 c c c c c c c c c c c c c c c c c c c c c c c c c c c c c 1 . 
-. 1 c c c c c c c c c c c c c c c c c c c c c c c c c c c c c 1 . 
-. 1 c c 1 1 1 1 1 c c c c c c c c c c c c c c c 1 1 1 1 1 c c 1 . 
-. 1 c c 1 1 1 1 1 c c c c c c c c c c c c c c c 1 1 1 1 1 c c 1 . 
-. 1 c c 1 1 f 1 1 c c c c c c c c c c c c c c c 1 1 f 1 1 c c 1 . 
-. 1 c c 1 1 1 1 1 c c c c c c c c c c c c c c c 1 1 1 1 1 c c 1 . 
-. 1 c c 1 1 1 1 1 c c c c c c f f f c c c c c c 1 1 1 1 1 c c 1 . 
-1 c c c c c c c c c c c c c c f 1 f c c c c c c c c c c c c c c 1 
-1 c c c c c c c c c c c c c c f f f c c c c c c c c c c c c c c 1 
-. 1 c c c c c c c c c c c c c c c c c c c c c c c c c c c c c 1 . 
-. 1 c c c f c c c c c c c c c c c c c c c c c c c c c f c c c 1 . 
-. 1 c c c c f c c c c c c c c c c c c c c c c c c c f c c c c 1 . 
-. 1 c c c c c f f f f f f f f f f f f f f f f f f f c c c c c 1 . 
-. 1 c c c c c c c c c c c c c c c c c c c c c c c c c c c c c 1 . 
-. 1 c c c c c c c c c c c c c c c c c c c c c c c c c c c c c 1 . 
-. . 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 . . 
-. . . 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 . . . 
-. . . . 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 . . . . 
-. . . . . 1 1 1 1 1 1 1 1 1 1 1 . 1 1 1 1 1 1 1 1 1 1 1 . . . . . 
-. . . . . . 1 1 1 1 1 1 1 1 1 . . . 1 1 1 1 1 1 1 1 1 . . . . . . 
-. . . . . . . 1 1 1 1 1 1 1 . . . . . 1 1 1 1 1 1 1 . . . . . . . 
-. . . . . . . . 1 1 1 1 1 . . . . . . . 1 1 1 1 1 . . . . . . . . 
-. . . . . . . . . 1 1 1 . . . . . . . . . 1 1 1 . . . . . . . . . 
-. . . . . . . . . . 1 . . . . . . . . . . . 1 . . . . . . . . . . 
-`, SpriteKind.Enemy)
-    Lv_2_monster.setFlag(SpriteFlag.StayInScreen, true)
-    Lv_2_monster.setPosition(1000, 104)
-    Lv_2_monster.follow(Kumba, 77)
-}
 function Level_3 () {
-	
+    scene.cameraFollowSprite(camera_lv_3)
+    scene.setTile(14, img`
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+`, true)
+    scene.setTile(3, img`
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+`, true)
+    scene.setTile(9, img`
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+`, false)
+    scene.setTile(6, img`
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+`, false)
+    scene.setTile(7, img`
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+`, false)
+    scene.setTile(5, img`
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+`, false)
+    scene.setTile(4, img`
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+`, false)
+    scene.setTile(15, img`
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+f f f f f f f a a f f f f f f f 
+1 1 1 1 1 7 a 5 5 5 5 5 1 1 1 1 
+f f f f 7 a 5 f 4 4 4 f 5 f f f 
+1 1 1 b 7 a 5 4 b b b 4 1 1 1 1 
+f f 4 b 7 a 5 b 7 7 7 b 4 f f f 
+1 1 4 b 7 a 5 f f a a 7 b 4 1 1 
+f f 4 b 7 a a f f 5 a 7 b 4 f f 
+1 1 1 4 b 7 7 7 b 5 a 7 b 4 1 1 
+f f f f 4 b b b 4 5 a 7 b f f f 
+1 1 1 5 1 4 4 4 1 5 a 7 1 1 1 1 
+f f f f 5 5 5 5 5 a 7 f f f f f 
+1 1 1 1 1 1 1 a a 1 1 1 1 1 1 1 
+f f f f f f f f f f f f f f f f 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+`, false)
+    Level_3_trampoline()
+    controller.moveSprite(Kumba, 75, 0)
 }
-let Lv_2_monster: Sprite = null
 let Camera_lv_1: Sprite = null
-let Trampoline: Sprite = null
+let camera_lv_3: Sprite = null
 let Tom_and_Jared_3: Sprite = null
 let Tom_and_Jared_2: Sprite = null
 let Todd_and_Jared_1: Sprite = null
+let Trampoline: Sprite = null
 let Level = 0
+let Lv_2_monster_bottom: Sprite = null
 let Kumba: Sprite = null
-let Camera_lv_2: Sprite = null
+let Lv_2_monster: Sprite = null
+let list: Image[] = []
+let Camera_lv_42: Sprite = null
 character_start()
 Level_1_splash()
 Level_1_enemies()
