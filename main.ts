@@ -20,7 +20,7 @@ namespace myTiles {
 `
 }
 function camera_lv_2 () {
-    Camera_lv_42 = sprites.createProjectileFromSide(img`
+    Camera_lv_4 = sprites.createProjectileFromSide(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -38,7 +38,7 @@ function camera_lv_2 () {
 . . . . . . . . . . . . . . . . 
 e e e e e e e e e e e e e e e e 
 `, -150, 0)
-    Camera_lv_42.setPosition(750, 125)
+    Camera_lv_4.setPosition(750, 125)
 }
 function Level_1_splash () {
     game.splash("Level 1, travel into the future with the portal while avoiding monsters or moving too slowly")
@@ -132,6 +132,27 @@ function die_camera () {
     if (Kumba.x <= scene.cameraLeft() || Kumba.x >= scene.cameraLeft() + 160) {
         game.over(false)
     }
+}
+function Camera_lv_5 () {
+    Camera_lv_4 = sprites.createProjectileFromSide(img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+e e e e e e e e e e e e e e e e 
+`, -75, 0)
+    Camera_lv_4.setPosition(750, 125)
 }
 scene.onOverlapTile(SpriteKind.Player, img`
 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
@@ -565,7 +586,7 @@ f f f f f f f f f f f f f f f f
 f f f f f f f f f f f f f f f f 
 f f f f f f f f f f f f f f f f 
 `, false)
-    scene.cameraFollowSprite(Camera_lv_42)
+    scene.cameraFollowSprite(Camera_lv_4)
     controller.moveSprite(Kumba, 150, 0)
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
@@ -772,7 +793,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     jump()
 })
 function Level_4 () {
-    scene.cameraFollowSprite(Camera_lv_42)
+    scene.cameraFollowSprite(Camera_lv_4)
     Trampoline.destroy()
     scene.setTile(14, img`
 f 1 1 1 f 1 1 f f 1 1 f 1 1 1 f 
@@ -2050,27 +2071,6 @@ function Call_levels () {
         Level_4()
     }
 }
-function Camera_lv_4 () {
-    Camera_lv_42 = sprites.createProjectileFromSide(img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-e e e e e e e e e e e e e e e e 
-`, -75, 0)
-    Camera_lv_42.setPosition(750, 125)
-}
 function camera_lv_1 () {
     // Once the game starts, the camera will go at a
     // consistent pace
@@ -2257,7 +2257,7 @@ let Lv_2_monster_bottom: Sprite = null
 let Kumba: Sprite = null
 let Lv_2_monster: Sprite = null
 let list: Image[] = []
-let Camera_lv_42: Sprite = null
+let Camera_lv_4: Sprite = null
 character_start()
 Level_1_splash()
 Level_1_enemies()
