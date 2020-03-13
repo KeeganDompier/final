@@ -175,27 +175,6 @@ scene.onOverlapTile(SpriteKind.Player, img`
     Level = 2
     camera_lv_2()
 })
-function Level_3_trampoline () {
-    Trampoline = sprites.create(img`
-. . . . . . . 7 7 . . . . . . . 
-. . . . . . 7 7 7 7 . . . . . . 
-. . . . . 7 7 7 7 7 7 . . . . . 
-. . . . 7 7 7 7 7 7 7 7 . . . . 
-. . . 7 7 7 7 7 7 7 7 7 7 . . . 
-. . 7 7 7 7 7 7 7 7 7 7 7 7 . . 
-. 7 7 7 7 7 7 7 7 7 7 7 7 7 7 . 
-7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-. . . . . 7 7 7 7 7 7 . . . . . 
-. . . . . 7 7 7 7 7 7 . . . . . 
-. . . . . 7 7 7 7 7 7 . . . . . 
-. . . . . 7 7 7 7 7 7 . . . . . 
-. . . . . 7 7 7 7 7 7 . . . . . 
-. . . . . 7 7 7 7 7 7 . . . . . 
-. . . . . 7 7 7 7 7 7 . . . . . 
-. . . . . 7 7 7 7 7 7 . . . . . 
-`, SpriteKind.Food)
-    Trampoline.setPosition(280, 90)
-}
 function character_start () {
     // sets sprite
     Kumba = sprites.create(img`
@@ -589,19 +568,16 @@ f f f f f f f f f f f f f f f f
     scene.cameraFollowSprite(Camera_lv_4)
     controller.moveSprite(Kumba, 150, 0)
 }
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
-    Kumba.vy += -1000
-})
 function Level_1 () {
     // Sets tile map
     scene.setTileMap(img`
 7 7 7 9 7 7 7 7 9 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 9 7 7 7 7 7 7 
 7 9 7 7 7 7 7 7 7 7 7 7 7 9 7 7 7 7 7 7 9 7 7 7 9 7 7 7 7 7 7 7 7 7 7 7 7 7 9 7 9 7 7 7 7 7 9 7 7 7 
 7 7 7 7 9 7 7 7 7 7 9 7 7 7 7 7 9 7 7 7 7 7 7 7 7 7 7 7 7 7 7 9 7 7 9 7 7 7 7 7 7 7 7 9 7 7 7 7 7 e 
-4 7 4 7 7 7 7 9 7 7 4 7 7 7 7 7 7 7 7 3 3 3 3 3 3 7 9 3 3 3 7 7 7 7 3 3 3 3 3 3 3 3 3 7 7 7 7 7 e e 
-6 7 6 5 7 7 7 7 7 7 6 7 7 7 7 7 4 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 9 7 7 7 7 7 7 7 7 7 3 7 9 f e e e 
-e e e e e e e e 7 7 6 7 7 7 7 7 6 7 7 7 7 7 e 7 7 7 7 7 7 7 e 7 7 7 7 7 e e e 7 7 7 e 7 7 7 e e e e 
-e e e e e e e e e e e e 7 7 7 7 6 7 7 e e e e e e e e e e e e e 7 7 7 e e e e e 7 e e e 7 e e e e e 
+4 7 4 7 7 7 7 9 7 7 4 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 9 7 7 7 7 7 7 7 7 7 3 3 3 3 3 3 3 7 7 7 7 7 e e 
+6 7 6 5 7 7 7 7 7 7 6 7 7 7 7 7 4 7 7 7 7 7 7 7 7 3 3 3 3 3 7 7 7 3 7 7 3 3 3 3 3 3 3 3 3 9 f e e e 
+e e e e e e e e 7 7 6 7 7 7 7 7 6 7 7 7 7 7 e 3 3 3 3 3 3 3 e 7 7 7 7 7 e e e 3 3 3 e 3 3 3 e e e e 
+e e e e e e e e e e e e 7 7 7 7 6 7 7 e e e e e e e e e e e e e 7 7 7 e e e e e 3 e e e 3 e e e e e 
 e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e 
 `)
     scene.setTile(14, img`
@@ -794,7 +770,6 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 })
 function Level_4 () {
     scene.cameraFollowSprite(Camera_lv_4)
-    Trampoline.destroy()
     scene.setTile(14, img`
 f 1 1 1 f 1 1 f f 1 1 f 1 1 1 f 
 f f f f f f f f f f f f f f f f 
@@ -2243,7 +2218,6 @@ f f f f 5 5 5 5 5 a 7 f f f f f
 f f f f f f f f f f f f f f f f 
 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
 `, false)
-    Level_3_trampoline()
     controller.moveSprite(Kumba, 75, 0)
 }
 let Camera_lv_1: Sprite = null
@@ -2251,7 +2225,6 @@ let camera_lv_3: Sprite = null
 let Tom_and_Jared_3: Sprite = null
 let Tom_and_Jared_2: Sprite = null
 let Todd_and_Jared_1: Sprite = null
-let Trampoline: Sprite = null
 let Level = 0
 let Lv_2_monster_bottom: Sprite = null
 let Kumba: Sprite = null
