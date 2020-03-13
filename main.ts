@@ -2058,7 +2058,7 @@ f f f f f f f f f f f f f f f f
 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
 `, function (sprite, location) {
     Level = 4
-    Camera_lv_4()
+    Camera_lv_5()
 })
 function Call_levels () {
     if (Level == 2) {
